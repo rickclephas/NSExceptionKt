@@ -8,6 +8,7 @@ import com.rickclephas.kmp.nsexceptionkt.core.asNSException
 import kotlinx.cinterop.UnsafeNumber
 import platform.Foundation.NSException
 import platform.Foundation.NSNumber
+import kotlin.native.concurrent.AtomicReference
 import kotlin.native.concurrent.freeze
 
 public enum class CausedByStrategy {
@@ -16,15 +17,17 @@ public enum class CausedByStrategy {
 
 @OptIn(ExperimentalStdlibApi::class)
 public fun setCrashlyticsUnhandledExceptionHook(causedByStrategy: CausedByStrategy = CausedByStrategy.IGNORE) {
+    val prevHook = AtomicReference<ReportUnhandledExceptionHook?>(null)
     val hook: ReportUnhandledExceptionHook = {
         if (causedByStrategy == CausedByStrategy.LOG_NON_FATAL) {
             recursivelyLogCause(it)
         }
         val exception = it.asNSException(causedByStrategy == CausedByStrategy.APPEND)
         FIRCLSExceptionRecordNSException(exception)
+        prevHook.value?.invoke(it)
         terminateWithUnhandledException(it)
     }
-    setUnhandledExceptionHook(hook.freeze())
+    prevHook.value = setUnhandledExceptionHook(hook.freeze())
 }
 
 @OptIn(UnsafeNumber::class)
