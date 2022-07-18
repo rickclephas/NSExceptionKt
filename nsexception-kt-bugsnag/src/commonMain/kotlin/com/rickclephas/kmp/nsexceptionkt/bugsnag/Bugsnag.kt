@@ -36,11 +36,7 @@ public fun setBugsnagUnhandledExceptionHook(): Unit = wrapUnhandledExceptionHook
         event.unhandled = true
         event.severity = BSGSeverity.BSGSeverityError
         if (causes.isNotEmpty()) {
-            event.errors += buildList {
-                causes.forEach {
-                    add(it.asBugsnagError())
-                }
-            }
+            event.errors += causes.map { it.asBugsnagError() }
         }
         true
     }
