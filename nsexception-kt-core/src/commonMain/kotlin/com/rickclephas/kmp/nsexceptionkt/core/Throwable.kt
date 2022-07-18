@@ -1,5 +1,12 @@
 package com.rickclephas.kmp.nsexceptionkt.core
 
+/**
+ * Returns a list of stack trace addresses representing
+ * the stack trace of the constructor call to `this` [Throwable].
+ * @param keepLastInit `true` to preserve the last constructor call, `false` to drop all constructor calls.
+ * @param commonAddresses a list of addresses used to drop the last common addresses.
+ * @see getStackTraceAddresses
+ */
 public fun Throwable.getFilteredStackTraceAddresses(
     keepLastInit: Boolean = false,
     commonAddresses: List<Long> = emptyList()
@@ -9,6 +16,11 @@ public fun Throwable.getFilteredStackTraceAddresses(
     keepLast = keepLastInit
 ).dropCommonAddresses(commonAddresses)
 
+/**
+ * Returns a list containing all addresses expect for the first addresses
+ * matching the constructor call of the [qualifiedClassName].
+ * If [keepLast] is `true` the last constructor call won't be dropped.
+ */
 internal fun List<Long>.dropInitAddresses(
     qualifiedClassName: String,
     stackTrace: Array<String>,
@@ -29,6 +41,9 @@ internal fun List<Long>.dropInitAddresses(
     return drop(kotlin.math.max(0, dropCount))
 }
 
+/**
+ * Returns a list containing all addresses expect for the last addresses that match with the [commonAddresses].
+ */
 internal fun List<Long>.dropCommonAddresses(
     commonAddresses: List<Long>
 ): List<Long> {
