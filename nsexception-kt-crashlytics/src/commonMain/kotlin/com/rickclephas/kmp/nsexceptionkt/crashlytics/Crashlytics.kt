@@ -5,11 +5,10 @@ import FirebaseCrashlytics.FIRCLSExceptionRecordNSException
 import FirebaseCrashlytics.FIRExceptionModel
 import FirebaseCrashlytics.FIRStackFrame
 import com.rickclephas.kmp.nsexceptionkt.core.asNSException
+import com.rickclephas.kmp.nsexceptionkt.core.wrapUnhandledExceptionHook
 import kotlinx.cinterop.UnsafeNumber
 import platform.Foundation.NSException
 import platform.Foundation.NSNumber
-import kotlin.native.concurrent.AtomicReference
-import kotlin.native.concurrent.freeze
 
 /**
  * Defines strategies for logging [causes][Throwable.cause].
@@ -37,22 +36,16 @@ public enum class CausedByStrategy {
  * If an unhandled exception hook was already set, that hook will be invoked after the exception is logged.
  * Note: once the exception is logged the program will be terminated.
  * @param causedByStrategy the strategy used to log [causes][Throwable.cause].
- * @see setUnhandledExceptionHook
- * @see terminateWithUnhandledException
+ * @see wrapUnhandledExceptionHook
  */
-@OptIn(ExperimentalStdlibApi::class)
-public fun setCrashlyticsUnhandledExceptionHook(causedByStrategy: CausedByStrategy = CausedByStrategy.IGNORE) {
-    val prevHook = AtomicReference<ReportUnhandledExceptionHook?>(null)
-    val hook: ReportUnhandledExceptionHook = {
-        if (causedByStrategy == CausedByStrategy.LOG_NON_FATAL) {
-            recursivelyLogCause(it)
-        }
-        val exception = it.asNSException(causedByStrategy == CausedByStrategy.APPEND)
-        FIRCLSExceptionRecordNSException(exception)
-        prevHook.value?.invoke(it)
-        terminateWithUnhandledException(it)
+public fun setCrashlyticsUnhandledExceptionHook(
+    causedByStrategy: CausedByStrategy = CausedByStrategy.IGNORE
+): Unit = wrapUnhandledExceptionHook { throwable ->
+    if (causedByStrategy == CausedByStrategy.LOG_NON_FATAL) {
+        recursivelyLogCause(throwable)
     }
-    prevHook.value = setUnhandledExceptionHook(hook.freeze())
+    val exception = throwable.asNSException(causedByStrategy == CausedByStrategy.APPEND)
+    FIRCLSExceptionRecordNSException(exception)
 }
 
 /**
