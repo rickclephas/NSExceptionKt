@@ -33,13 +33,13 @@ internal fun Throwable.getReason(appendCausedBy: Boolean = false): String? {
         message?.let(::append)
         var cause = cause
         while (cause != null) {
-            if (isNotEmpty()) append(" ")
+            if (isNotEmpty()) appendLine()
             append("Caused by: ")
             append(cause.name)
             cause.message?.let { append(": $it") }
             cause = cause.cause
         }
-    }
+    }.takeIf { it.isNotEmpty() }
 }
 
 internal class ThrowableNSException(
