@@ -1,0 +1,21 @@
+language = Objective-C
+---
+#import <Foundation/Foundation.h>
+
+extern void FIRCLSExceptionRecordNSException(NSException *exception);
+
+@interface FIRStackFrame : NSObject
+
++ (instancetype)stackFrameWithAddress:(NSUInteger)address;
+
+@end
+
+@interface FIRExceptionModel : NSObject
+
+- (instancetype)initWithName:(NSString *)name reason:(NSString *)reason;
+
+@property(nonatomic, copy) NSArray<FIRStackFrame *> *stackTrace;
+
+@end
+
+extern void FIRCLSExceptionRecordModel(FIRExceptionModel *exceptionModel);
