@@ -48,6 +48,8 @@ public fun setCrashlyticsUnhandledExceptionHook(
         }
     }
     val exception = throwable.asNSException(causedByStrategy == CausedByStrategy.APPEND)
+    // The recorded exception is persisted, so we can safely terminate afterwards.
+    // https://github.com/firebase/firebase-ios-sdk/blob/82f163bd86566f83c5d7572a1c2c0024a04eb4dc/Crashlytics/Crashlytics/Handlers/FIRCLSException.mm#L227
     FIRCLSExceptionRecordNSException(exception)
 }
 

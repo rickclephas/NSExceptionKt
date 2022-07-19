@@ -26,6 +26,8 @@ public fun configureBugsnag(config: BugsnagConfiguration) {
 public fun setBugsnagUnhandledExceptionHook(): Unit = wrapUnhandledExceptionHook { throwable ->
     val exception = throwable.asNSException()
     val causes = throwable.causes.map { it.asNSException() }
+    // Notify will persist unhandled events, so we can safely terminate afterwards.
+    // https://github.com/bugsnag/bugsnag-cocoa/blob/6bcd46f5f8dc06ac26537875d501f02b27d219a9/Bugsnag/Client/BugsnagClient.m#L744
     Bugsnag.notify(exception) { event ->
         if (event == null) return@notify true
         event.unhandled = true
