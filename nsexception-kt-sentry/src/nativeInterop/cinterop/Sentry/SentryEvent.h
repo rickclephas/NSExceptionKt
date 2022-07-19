@@ -27,6 +27,8 @@
 
 @property (nonatomic, strong) SentryId *eventId;
 
+@property (nonatomic, strong) NSDictionary<NSString *, NSString *> *_Nullable tags;
+
 @property (nonatomic, strong) NSArray<SentryThread *> *_Nullable threads;
 
 @property (nonatomic, strong) NSArray<SentryException *> *_Nullable exceptions;

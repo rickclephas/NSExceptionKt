@@ -20,4 +20,6 @@
 
 @interface SentryScope : NSObject
 
+- (void)setTagValue:(NSString *)value forKey:(NSString *)key;
+
 @end

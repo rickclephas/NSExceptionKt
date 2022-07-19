@@ -17,7 +17,10 @@
 // copies or substantial portions of the Software.
 
 #import <Foundation/Foundation.h>
+#import <SentryScope.h>
 
 @interface SentrySDK : NSObject
+
++ (void)configureScope:(void (^)(SentryScope *scope))callback;
 
 @end

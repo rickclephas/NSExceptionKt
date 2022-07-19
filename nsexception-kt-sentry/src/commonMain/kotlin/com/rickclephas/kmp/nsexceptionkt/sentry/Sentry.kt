@@ -9,6 +9,12 @@ import platform.Foundation.NSException
 import platform.Foundation.NSNumber
 
 /**
+ * Drops the Kotlin crash that follows an unhandled Kotlin exception.
+ */
+public fun dropKotlinCrashEvent(event: SentryEvent?): SentryEvent? =
+    event?.takeUnless { it.tags?.containsKey(kotlinCrashedTag) ?: false }
+
+/**
  * Sets the unhandled exception hook such that all unhandled exceptions are logged to Sentry as fatal exceptions.
  * If an unhandled exception hook was already set, that hook will be invoked after the exception is logged.
  * Note: once the exception is logged the program will be terminated.
@@ -19,7 +25,15 @@ public fun setSentryUnhandledExceptionHook(): Unit = wrapUnhandledExceptionHook 
     // The envelope will be persisted, so we can safely terminate afterwards.
     // https://github.com/getsentry/sentry-cocoa/blob/678172142ac1d10f5ed7978f69d16ab03e801057/Sources/Sentry/SentryClient.m#L409
     SentrySDK.storeEnvelope(envelope)
+    SentrySDK.configureScope { scope ->
+        scope?.setTagValue(kotlinCrashedTag, kotlinCrashedTag)
+    }
 }
+
+/**
+ * Tag used to mark the Kotlin termination crash.
+ */
+private const val kotlinCrashedTag = "nsexceptionkt.kotlin_crashed"
 
 /**
  * Converts `this` [Throwable] to a [SentryEnvelope].

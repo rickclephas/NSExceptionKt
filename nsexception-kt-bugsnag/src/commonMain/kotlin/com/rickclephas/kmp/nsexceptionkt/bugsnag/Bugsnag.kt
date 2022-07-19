@@ -43,7 +43,7 @@ public fun setBugsnagUnhandledExceptionHook(): Unit = wrapUnhandledExceptionHook
 /**
  * Feature flag used to mark the Kotlin termination crash.
  */
-private const val kotlinCrashedFeatureFlag = "com.rickclephas.kmp.nsexceptionkt.bugsnag.kotlin_crashed"
+private const val kotlinCrashedFeatureFlag = "nsexceptionkt.kotlin_crashed"
 
 /**
  * Converts `this` [NSException] to a [BugsnagError].
