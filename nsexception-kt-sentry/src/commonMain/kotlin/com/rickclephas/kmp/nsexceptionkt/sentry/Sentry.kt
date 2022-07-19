@@ -8,15 +8,39 @@ import kotlinx.cinterop.UnsafeNumber
 import platform.Foundation.NSException
 import platform.Foundation.NSNumber
 
+/**
+ * Sets the unhandled exception hook such that all unhandled exceptions are logged to Sentry as fatal exceptions.
+ * If an unhandled exception hook was already set, that hook will be invoked after the exception is logged.
+ * Note: once the exception is logged the program will be terminated.
+ * @see wrapUnhandledExceptionHook
+ */
 public fun setSentryUnhandledExceptionHook(): Unit = wrapUnhandledExceptionHook { throwable ->
-    val event = throwable.asSentryEvent()
-    SentrySDK.captureCrashEvent(event)
-    // TODO: Wait before crashing
+    val envelope = throwable.asSentryEnvelope()
+    // The envelope will be persisted, so we can safely terminate afterwards.
+    // https://github.com/getsentry/sentry-cocoa/blob/678172142ac1d10f5ed7978f69d16ab03e801057/Sources/Sentry/SentryClient.m#L409
+    SentrySDK.storeEnvelope(envelope)
 }
 
+/**
+ * Converts `this` [Throwable] to a [SentryEnvelope].
+ */
+private fun Throwable.asSentryEnvelope(): SentryEnvelope {
+    val event = asSentryEvent()
+    val preparedEvent = SentrySDK.currentHub?.let { hub ->
+        hub.getClient()?.prepareEvent(event, hub.scope, alwaysAttachStacktrace = false, isCrashEvent = true)
+    } ?: event
+    val item = SentryEnvelopeItem(preparedEvent)
+    val header = SentryEnvelopeHeader(preparedEvent.eventId, SentrySDK.options?.sdkInfo, null)
+    return SentryEnvelope(header, listOf(item))
+}
+
+/**
+ * Converts `this` [Throwable] to a [SentryEvent].
+ */
 @Suppress("UnnecessaryOptInAnnotation")
 @OptIn(UnsafeNumber::class)
 private fun Throwable.asSentryEvent(): SentryEvent = SentryEvent(kSentryLevelFatal).apply {
+    isCrashEvent = true
     @Suppress("UNCHECKED_CAST")
     val threads = threadInspector?.getCurrentThreadsWithStackTrace() as List<SentryThread>?
     this.threads = threads
@@ -31,6 +55,9 @@ private fun Throwable.asSentryEvent(): SentryEvent = SentryEvent(kSentryLevelFat
         .map { it.asNSException().asSentryException(currentThread?.threadId) }
 }
 
+/**
+ * Converts `this` [NSException] to a [SentryException].
+ */
 private fun NSException.asSentryException(
     threadId: NSNumber?
 ): SentryException = SentryException(reason ?: "", name).apply {

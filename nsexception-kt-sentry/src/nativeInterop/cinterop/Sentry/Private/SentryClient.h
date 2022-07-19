@@ -18,9 +18,16 @@
 
 #import <Private/SentryThreadInspector.h>
 #import <SentryClient.h>
+#import <SentryEvent.h>
+#import <SentryScope.h>
 
 @interface SentryClient ()
 
 @property (nonatomic, strong) SentryThreadInspector *threadInspector;
+
+- (SentryEvent *_Nullable)prepareEvent:(SentryEvent *)event
+                             withScope:(SentryScope *)scope
+                alwaysAttachStacktrace:(BOOL)alwaysAttachStacktrace
+                          isCrashEvent:(BOOL)isCrashEvent;
 
 @end

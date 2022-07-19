@@ -1,6 +1,6 @@
 // The following are snippets from the Sentry Cocoa SDK used to generate Kotlin stubs.
 //
-// https://github.com/getsentry/sentry-cocoa/blob/64a7645a598b90e217be42333594c981a3ddc642/Sources/Sentry/Public/SentryHub.h
+// https://github.com/getsentry/sentry-cocoa/blob/678172142ac1d10f5ed7978f69d16ab03e801057/Sources/Sentry/Public/SentryOptions.h
 //
 // The MIT License (MIT)
 //
@@ -17,13 +17,10 @@
 // copies or substantial portions of the Software.
 
 #import <Foundation/Foundation.h>
-#import <SentryClient.h>
-#import <SentryScope.h>
+#import <SentrySdkInfo.h>
 
-@interface SentryHub : NSObject
+@interface SentryOptions ()
 
-- (SentryClient *_Nullable)getClient;
-
-@property (nonatomic, readonly, strong) SentryScope *scope;
+@property (nonatomic, readonly, strong) SentrySdkInfo *sdkInfo;
 
 @end

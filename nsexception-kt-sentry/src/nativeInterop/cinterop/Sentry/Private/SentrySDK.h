@@ -17,13 +17,17 @@
 // The above copyright notice and this permission notice shall be included in all
 // copies or substantial portions of the Software.
 
-#import <SentryEvent.h>
+#import <SentryEnvelope.h>
 #import <SentryHub.h>
+#import <SentryOptions.h>
 #import <SentrySDK.h>
 
 @interface SentrySDK ()
 
-+ (void)captureCrashEvent:(SentryEvent *)event;
++ (void)storeEnvelope:(SentryEnvelope *)envelope;
+
 @property (class) SentryHub *currentHub;
+
+@property (nonatomic, nullable, readonly, class) SentryOptions *options;
 
 @end
