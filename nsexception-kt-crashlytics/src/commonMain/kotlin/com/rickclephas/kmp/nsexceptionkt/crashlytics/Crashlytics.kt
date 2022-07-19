@@ -5,6 +5,7 @@ import FirebaseCrashlytics.FIRCLSExceptionRecordNSException
 import FirebaseCrashlytics.FIRExceptionModel
 import FirebaseCrashlytics.FIRStackFrame
 import com.rickclephas.kmp.nsexceptionkt.core.asNSException
+import com.rickclephas.kmp.nsexceptionkt.core.causes
 import com.rickclephas.kmp.nsexceptionkt.core.wrapUnhandledExceptionHook
 import kotlinx.cinterop.UnsafeNumber
 import platform.Foundation.NSException
@@ -42,7 +43,9 @@ public fun setCrashlyticsUnhandledExceptionHook(
     causedByStrategy: CausedByStrategy = CausedByStrategy.IGNORE
 ): Unit = wrapUnhandledExceptionHook { throwable ->
     if (causedByStrategy == CausedByStrategy.LOG_NON_FATAL) {
-        recursivelyLogCause(throwable)
+        throwable.causes.asReversed().forEach { cause ->
+            FIRCLSExceptionRecordModel(cause.asNSException().asFIRExceptionModel())
+        }
     }
     val exception = throwable.asNSException(causedByStrategy == CausedByStrategy.APPEND)
     FIRCLSExceptionRecordNSException(exception)
@@ -59,13 +62,4 @@ private fun NSException.asFIRExceptionModel(): FIRExceptionModel = FIRExceptionM
     stackTrace = callStackReturnAddresses.map {
         FIRStackFrame.stackFrameWithAddress((it as NSNumber).unsignedIntegerValue)
     }
-}
-
-/**
- * Recursively logs the [causes][Throwable.cause] as non-fatal exceptions.
- */
-private fun recursivelyLogCause(throwable: Throwable) {
-    val cause = throwable.cause?.also(::recursivelyLogCause) ?: return
-    val exceptionModel = cause.asNSException().asFIRExceptionModel()
-    FIRCLSExceptionRecordModel(exceptionModel)
 }

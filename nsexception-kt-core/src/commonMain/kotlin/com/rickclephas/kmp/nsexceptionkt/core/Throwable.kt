@@ -1,6 +1,20 @@
 package com.rickclephas.kmp.nsexceptionkt.core
 
 /**
+ * Returns a list with all the [causes][Throwable.cause].
+ * The first element will be the cause, the second the cause of the cause, etc.
+ * This function stops once a reference cycles is detected.
+ */
+public val Throwable.causes: List<Throwable> get() = buildList {
+    val causes = mutableSetOf<Throwable>()
+    var cause = cause
+    while (cause != null && cause !in causes) {
+        add(cause)
+        cause = cause.cause
+    }
+}
+
+/**
  * Returns a list of stack trace addresses representing
  * the stack trace of the constructor call to `this` [Throwable].
  * @param keepLastInit `true` to preserve the last constructor call, `false` to drop all constructor calls.

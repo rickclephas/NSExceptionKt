@@ -2,6 +2,7 @@ package com.rickclephas.kmp.nsexceptionkt.bugsnag
 
 import Bugsnag.*
 import com.rickclephas.kmp.nsexceptionkt.core.asNSException
+import com.rickclephas.kmp.nsexceptionkt.core.causes
 import com.rickclephas.kmp.nsexceptionkt.core.wrapUnhandledExceptionHook
 import platform.Foundation.NSException
 
@@ -23,14 +24,8 @@ public fun configureBugsnag(config: BugsnagConfiguration) {
  * @see wrapUnhandledExceptionHook
  */
 public fun setBugsnagUnhandledExceptionHook(): Unit = wrapUnhandledExceptionHook { throwable ->
-    val exception = throwable.asNSException(false)
-    val causes = buildList {
-        var cause = throwable.cause
-        while (cause != null) {
-            add(cause.asNSException(false))
-            cause = cause.cause
-        }
-    }
+    val exception = throwable.asNSException()
+    val causes = throwable.causes.map { it.asNSException() }
     Bugsnag.notify(exception) { event ->
         if (event == null) return@notify true
         event.unhandled = true

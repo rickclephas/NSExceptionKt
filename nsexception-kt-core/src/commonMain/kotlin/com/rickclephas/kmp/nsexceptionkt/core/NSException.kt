@@ -17,10 +17,8 @@ public fun Throwable.asNSException(appendCausedBy: Boolean = false): NSException
     val returnAddresses = getFilteredStackTraceAddresses().let { addresses ->
         if (!appendCausedBy) return@let addresses
         addresses.toMutableList().apply {
-            var cause = cause
-            while (cause != null) {
+            for (cause in causes) {
                 addAll(cause.getFilteredStackTraceAddresses(true, addresses))
-                cause = cause.cause
             }
         }
     }.map {
@@ -46,13 +44,11 @@ internal fun Throwable.getReason(appendCausedBy: Boolean = false): String? {
     if (!appendCausedBy) return message
     return buildString {
         message?.let(::append)
-        var cause = cause
-        while (cause != null) {
+        for (cause in causes) {
             if (isNotEmpty()) appendLine()
             append("Caused by: ")
             append(cause.name)
             cause.message?.let { append(": $it") }
-            cause = cause.cause
         }
     }.takeIf { it.isNotEmpty() }
 }

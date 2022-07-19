@@ -2,6 +2,7 @@ package com.rickclephas.kmp.nsexceptionkt.sentry
 
 import Sentry.*
 import com.rickclephas.kmp.nsexceptionkt.core.asNSException
+import com.rickclephas.kmp.nsexceptionkt.core.causes
 import com.rickclephas.kmp.nsexceptionkt.core.wrapUnhandledExceptionHook
 import kotlinx.cinterop.UnsafeNumber
 import platform.Foundation.NSException
@@ -21,17 +22,13 @@ private fun Throwable.asSentryEvent(): SentryEvent = SentryEvent(kSentryLevelFat
     this.threads = threads
     val currentThread = threads?.firstOrNull { it.current?.boolValue ?: false }?.apply {
         NSExceptionKt_SentryThreadSetCrashed(this)
-        // Crashed threats shouldn't have a stacktrace, the trait_id should be set on the exception instead
+        // Crashed threats shouldn't have a stacktrace, the thread_id should be set on the exception instead
         // https://develop.sentry.dev/sdk/event-payloads/threads/
         stacktrace = null
     }
-    exceptions = buildList {
-        var throwable: Throwable? = this@asSentryEvent
-        while (throwable != null) {
-            add(0, throwable.asNSException(false).asSentryException(currentThread?.threadId))
-            throwable = throwable.cause
-        }
-    }
+    exceptions = this@asSentryEvent
+        .let { throwable -> throwable.causes.asReversed() + throwable }
+        .map { it.asNSException().asSentryException(currentThread?.threadId) }
 }
 
 private fun NSException.asSentryException(
