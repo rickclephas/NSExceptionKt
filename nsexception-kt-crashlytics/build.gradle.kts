@@ -38,7 +38,9 @@ kotlin {
         tvosArm64, tvosX64, tvosSimulatorArm64
     ).forEach {
         it.compilations.getByName("main") {
-            cinterops.create("FirebaseCrashlytics")
+            cinterops.create("FirebaseCrashlytics") {
+                includeDirs("$projectDir/src/nativeInterop/cinterop/FirebaseCrashlytics")
+            }
         }
     }
 }
