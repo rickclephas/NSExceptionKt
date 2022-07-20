@@ -20,7 +20,7 @@
 
 @interface SentryMechanism : NSObject
 
-- (instancetype)initWithType:(NSString *)type;
+- (instancetype)initWithType:(NSString *_Nonnull)type;
 
 @property (nonatomic, copy) NSNumber *_Nullable handled;
 

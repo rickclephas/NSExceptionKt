@@ -24,6 +24,6 @@
 
 - (SentryClient *_Nullable)getClient;
 
-@property (nonatomic, readonly, strong) SentryScope *scope;
+@property (nonatomic, readonly, strong, nonnull) SentryScope *scope;
 
 @end

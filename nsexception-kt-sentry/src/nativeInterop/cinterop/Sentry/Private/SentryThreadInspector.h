@@ -23,7 +23,7 @@
 
 @interface SentryThreadInspector : NSObject
 
-- (NSArray<SentryThread *> *)getCurrentThreadsWithStackTrace;
+- (NSArray<SentryThread *> *_Nonnull)getCurrentThreadsWithStackTrace;
 
 @property (nonatomic, strong) SentryStacktraceBuilder *stacktraceBuilder;
 

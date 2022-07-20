@@ -21,7 +21,7 @@
 
 @interface FIRCrashlytics : NSObject
 
-+ (instancetype)crashlytics;
-- (void)recordExceptionModel:(FIRExceptionModel *)exceptionModel;
++ (nonnull instancetype)crashlytics;
+- (void)recordExceptionModel:(nonnull FIRExceptionModel *)exceptionModel;
 
 @end

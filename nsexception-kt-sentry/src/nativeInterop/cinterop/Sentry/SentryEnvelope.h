@@ -32,13 +32,13 @@
 
 @interface SentryEnvelopeItem : NSObject
 
-- (instancetype)initWithEvent:(SentryEvent *)event;
+- (instancetype)initWithEvent:(SentryEvent *_Nonnull)event;
 
 @end
 
 @interface SentryEnvelope : NSObject
 
-- (instancetype)initWithHeader:(SentryEnvelopeHeader *)header
-                         items:(NSArray<SentryEnvelopeItem *> *)items NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithHeader:(SentryEnvelopeHeader *_Nonnull)header
+                         items:(NSArray<SentryEnvelopeItem *> *_Nonnull)items NS_DESIGNATED_INITIALIZER;
 
 @end

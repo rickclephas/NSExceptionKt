@@ -25,7 +25,7 @@
 
 - (instancetype)initWithLevel:(enum SentryLevel)level NS_DESIGNATED_INITIALIZER;
 
-@property (nonatomic, strong) SentryId *eventId;
+@property (nonatomic, strong, nonnull) SentryId *eventId;
 @property (nonatomic, strong) NSDictionary<NSString *, NSString *> *_Nullable tags;
 @property (nonatomic, strong) NSArray<SentryThread *> *_Nullable threads;
 @property (nonatomic, strong) NSArray<SentryException *> *_Nullable exceptions;

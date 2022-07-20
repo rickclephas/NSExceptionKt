@@ -19,6 +19,6 @@
 
 @interface BugsnagConfiguration ()
 
-- (void)clearFeatureFlagWithName:(NSString *)name;
+- (void)clearFeatureFlagWithName:(NSString *_Nullable)name;
 
 @end

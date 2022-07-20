@@ -40,7 +40,7 @@ private const val kotlinCrashedTag = "nsexceptionkt.kotlin_crashed"
  */
 private fun Throwable.asSentryEnvelope(): SentryEnvelope {
     val event = asSentryEvent()
-    val preparedEvent = SentrySDK.currentHub?.let { hub ->
+    val preparedEvent = SentrySDK.currentHub().let { hub ->
         hub.getClient()?.prepareEvent(event, hub.scope, alwaysAttachStacktrace = false, isCrashEvent = true)
     } ?: event
     val item = SentryEnvelopeItem(preparedEvent)
@@ -74,7 +74,7 @@ private fun Throwable.asSentryEvent(): SentryEvent = SentryEvent(kSentryLevelFat
  */
 private fun NSException.asSentryException(
     threadId: NSNumber?
-): SentryException = SentryException(reason ?: "", name).apply {
+): SentryException = SentryException(reason ?: "", name ?: "Throwable").apply {
     this.threadId = threadId
     mechanism = SentryMechanism("generic").apply {
         NSExceptionKt_SentryMechanismSetNotHandled(this)
@@ -88,4 +88,4 @@ private fun NSException.asSentryException(
 }
 
 private val threadInspector: SentryThreadInspector?
-    get() = SentrySDK.currentHub?.getClient()?.threadInspector
+    get() = SentrySDK.currentHub().getClient()?.threadInspector

@@ -22,6 +22,6 @@
 
 @interface SentryStacktraceBuilder : NSObject
 
-- (SentryStacktrace *)retrieveStacktraceFromCursor:(SentryCrashStackCursor)stackCursor;
+- (SentryStacktrace *_Nonnull)retrieveStacktraceFromCursor:(SentryCrashStackCursor)stackCursor;
 
 @end

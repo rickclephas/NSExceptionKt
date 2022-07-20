@@ -21,6 +21,6 @@
 
 @interface SentrySDK : NSObject
 
-+ (void)configureScope:(void (^)(SentryScope *scope))callback;
++ (void)configureScope:(void (^)(SentryScope *_Nonnull scope))callback;
 
 @end

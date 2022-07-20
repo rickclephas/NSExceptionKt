@@ -21,6 +21,6 @@
 
 @interface SentryOptions ()
 
-@property (nonatomic, readonly, strong) SentrySdkInfo *sdkInfo;
+@property (nonatomic, readonly, strong, nonnull) SentrySdkInfo *sdkInfo;
 
 @end

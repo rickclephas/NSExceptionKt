@@ -22,7 +22,7 @@
 
 @interface SentryException : NSObject
 
-- (instancetype)initWithValue:(NSString *)value type:(NSString *)type;
+- (instancetype)initWithValue:(NSString *_Nonnull)value type:(NSString *_Nonnull)type;
 
 @property (nonatomic, strong) SentryMechanism *_Nullable mechanism;
 @property (nonatomic, copy) NSNumber *_Nullable threadId;

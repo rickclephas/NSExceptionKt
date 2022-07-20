@@ -20,6 +20,6 @@
 
 @interface FIRStackFrame : NSObject
 
-+ (instancetype)stackFrameWithAddress:(NSUInteger)address;
++ (nonnull instancetype)stackFrameWithAddress:(NSUInteger)address;
 
 @end

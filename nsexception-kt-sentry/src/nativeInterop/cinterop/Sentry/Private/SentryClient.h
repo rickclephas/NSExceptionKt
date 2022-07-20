@@ -23,10 +23,10 @@
 
 @interface SentryClient ()
 
-@property (nonatomic, strong) SentryThreadInspector *threadInspector;
+@property (nonatomic, strong, nonnull) SentryThreadInspector *threadInspector;
 
-- (SentryEvent *_Nullable)prepareEvent:(SentryEvent *)event
-                             withScope:(SentryScope *)scope
+- (SentryEvent *_Nullable)prepareEvent:(SentryEvent *_Nonnull)event
+                             withScope:(SentryScope *_Nonnull)scope
                 alwaysAttachStacktrace:(BOOL)alwaysAttachStacktrace
                           isCrashEvent:(BOOL)isCrashEvent;
 

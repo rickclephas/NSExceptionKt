@@ -19,6 +19,6 @@
 
 @interface BugsnagStackframe ()
 
-+ (NSArray<BugsnagStackframe *> *)stackframesWithCallStackReturnAddresses:(NSArray<NSNumber *> *)callStackReturnAddresses;
++ (NSArray<BugsnagStackframe *> *_Nonnull)stackframesWithCallStackReturnAddresses:(NSArray<NSNumber *> *_Nonnull)callStackReturnAddresses;
 
 @end

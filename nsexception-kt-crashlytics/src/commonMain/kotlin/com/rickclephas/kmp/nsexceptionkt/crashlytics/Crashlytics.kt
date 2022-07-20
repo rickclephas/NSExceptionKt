@@ -42,7 +42,7 @@ public fun setCrashlyticsUnhandledExceptionHook(
     val crashlytics = FIRCrashlytics.crashlytics()
     if (causedByStrategy == CausedByStrategy.LOG_NON_FATAL) {
         throwable.causes.asReversed().forEach { cause ->
-            crashlytics?.recordExceptionModel(cause.asNSException().asFIRExceptionModel())
+            crashlytics.recordExceptionModel(cause.asNSException().asFIRExceptionModel())
         }
     }
     val exception = throwable.asNSException(causedByStrategy == CausedByStrategy.APPEND)
@@ -57,7 +57,7 @@ public fun setCrashlyticsUnhandledExceptionHook(
  */
 @OptIn(UnsafeNumber::class)
 private fun NSException.asFIRExceptionModel(): FIRExceptionModel = FIRExceptionModel(
-    name, reason ?: ""
+    name ?: "Throwable", reason ?: ""
 ).apply {
     stackTrace = callStackReturnAddresses.map {
         FIRStackFrame.stackFrameWithAddress((it as NSNumber).unsignedIntegerValue)

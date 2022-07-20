@@ -21,7 +21,7 @@
 
 @interface FIRExceptionModel : NSObject
 
-- (instancetype)initWithName:(NSString *)name reason:(NSString *)reason;
-@property(nonatomic, copy) NSArray<FIRStackFrame *> *stackTrace;
+- (nonnull instancetype)initWithName:(nonnull NSString *)name reason:(nonnull NSString *)reason;
+@property(nonatomic, copy) NSArray<FIRStackFrame *> *_Nonnull stackTrace;
 
 @end

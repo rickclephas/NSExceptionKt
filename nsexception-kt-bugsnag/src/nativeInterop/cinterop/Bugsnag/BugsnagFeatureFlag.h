@@ -18,6 +18,6 @@
 
 @interface BugsnagFeatureFlag : NSObject
 
-@property (readonly, nonatomic) NSString *name;
+@property (readonly, nonatomic, nonnull) NSString *name;
 
 @end

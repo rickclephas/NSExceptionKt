@@ -51,6 +51,6 @@ private const val kotlinCrashedFeatureFlag = "nsexceptionkt.kotlin_crashed"
 private fun NSException.asBugsnagError(): BugsnagError = BugsnagError().apply {
     errorClass = name
     errorMessage = reason
-    stacktrace = BugsnagStackframe.stackframesWithCallStackReturnAddresses(callStackReturnAddresses)!!
+    stacktrace = BugsnagStackframe.stackframesWithCallStackReturnAddresses(callStackReturnAddresses)
     type = BSGErrorType.BSGErrorTypeCocoa
 }
