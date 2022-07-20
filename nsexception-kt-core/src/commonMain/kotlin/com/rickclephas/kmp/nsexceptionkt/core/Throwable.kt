@@ -10,6 +10,7 @@ public val Throwable.causes: List<Throwable> get() = buildList {
     var cause = cause
     while (cause != null && cause !in causes) {
         add(cause)
+        causes.add(cause)
         cause = cause.cause
     }
 }
