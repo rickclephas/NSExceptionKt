@@ -1,2 +1,2 @@
 language = Objective-C
-headers = FIRExceptionModel.h FIRStackFrame.h Private/FIRCLSException.h
+headers = FIRCrashlytics.h FIRExceptionModel.h FIRStackFrame.h Private/FIRCLSException.h

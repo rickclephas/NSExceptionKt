@@ -1,9 +1,6 @@
 package com.rickclephas.kmp.nsexceptionkt.crashlytics
 
-import FirebaseCrashlytics.FIRCLSExceptionRecordModel
-import FirebaseCrashlytics.FIRCLSExceptionRecordNSException
-import FirebaseCrashlytics.FIRExceptionModel
-import FirebaseCrashlytics.FIRStackFrame
+import FirebaseCrashlytics.*
 import com.rickclephas.kmp.nsexceptionkt.core.asNSException
 import com.rickclephas.kmp.nsexceptionkt.core.causes
 import com.rickclephas.kmp.nsexceptionkt.core.wrapUnhandledExceptionHook
@@ -42,9 +39,10 @@ public enum class CausedByStrategy {
 public fun setCrashlyticsUnhandledExceptionHook(
     causedByStrategy: CausedByStrategy = CausedByStrategy.IGNORE
 ): Unit = wrapUnhandledExceptionHook { throwable ->
+    val crashlytics = FIRCrashlytics.crashlytics()
     if (causedByStrategy == CausedByStrategy.LOG_NON_FATAL) {
         throwable.causes.asReversed().forEach { cause ->
-            FIRCLSExceptionRecordModel(cause.asNSException().asFIRExceptionModel())
+            crashlytics?.recordExceptionModel(cause.asNSException().asFIRExceptionModel())
         }
     }
     val exception = throwable.asNSException(causedByStrategy == CausedByStrategy.APPEND)

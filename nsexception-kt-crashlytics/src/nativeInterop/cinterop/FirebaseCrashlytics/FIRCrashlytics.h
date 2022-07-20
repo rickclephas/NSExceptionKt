@@ -1,6 +1,6 @@
 // The following are snippets from the Firebase Crashlytics iOS SDK used to generate Kotlin stubs.
 //
-// https://github.com/firebase/firebase-ios-sdk/blob/61dfd02e33e8264b8604b3ada2ff8c26fc218439/Crashlytics/Crashlytics/Handlers/FIRCLSException.h
+// https://github.com/firebase/firebase-ios-sdk/blob/85781d0c7661af0bd5d11c5b00cf47e6a1c0adff/Crashlytics/Crashlytics/Public/FirebaseCrashlytics/FIRCrashlytics.h
 //
 // Copyright 2019-2020 Google LLC
 //
@@ -17,5 +17,11 @@
 // limitations under the License.
 
 #import <Foundation/Foundation.h>
+#import <FIRExceptionModel.h>
 
-extern void FIRCLSExceptionRecordNSException(NSException *exception);
+@interface FIRCrashlytics : NSObject
+
++ (instancetype)crashlytics;
+- (void)recordExceptionModel:(FIRExceptionModel *)exceptionModel;
+
+@end
