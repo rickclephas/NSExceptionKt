@@ -22,11 +22,8 @@
 @interface SentryThread : NSObject
 
 @property (nonatomic, copy) NSNumber *threadId;
-
 @property (nonatomic, strong) SentryStacktrace *_Nullable stacktrace;
-
 @property (nonatomic, copy) NSNumber *_Nullable crashed;
-
 @property (nonatomic, copy) NSNumber *_Nullable current;
 
 @end

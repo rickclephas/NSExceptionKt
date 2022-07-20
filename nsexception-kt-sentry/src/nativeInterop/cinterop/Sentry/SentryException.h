@@ -25,9 +25,7 @@
 - (instancetype)initWithValue:(NSString *)value type:(NSString *)type;
 
 @property (nonatomic, strong) SentryMechanism *_Nullable mechanism;
-
 @property (nonatomic, copy) NSNumber *_Nullable threadId;
-
 @property (nonatomic, strong) SentryStacktrace *_Nullable stacktrace;
 
 @end

@@ -12,7 +12,7 @@ import platform.Foundation.NSNumber
  * Drops the Kotlin crash that follows an unhandled Kotlin exception.
  */
 public fun dropKotlinCrashEvent(event: SentryEvent?): SentryEvent? =
-    event?.takeUnless { it.tags?.containsKey(kotlinCrashedTag) ?: false }
+    event?.takeUnless { it.isCrashEvent && (it.tags?.containsKey(kotlinCrashedTag) ?: false) }
 
 /**
  * Sets the unhandled exception hook such that all unhandled exceptions are logged to Sentry as fatal exceptions.
