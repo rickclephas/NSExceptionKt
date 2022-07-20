@@ -42,7 +42,8 @@ That's all, now go and crash that app!
 ## Caused by exceptions
 
 The Firebase Crashlytics iOS SDK has a limited API,
-which means it (currently) doesn't support the concept of caused by exceptions.
+which means it ([currently](https://github.com/firebase/firebase-ios-sdk/issues/10030)) 
+doesn't support the concept of caused by exceptions.
 
 By default, only the main exception is logged and any causes are ignored.  
 However `setCrashlyticsUnhandledExceptionHook` accepts a `CausedByStrategy` to customise that behaviour:
