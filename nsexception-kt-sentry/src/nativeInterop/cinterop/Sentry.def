@@ -1,6 +1,7 @@
 language = Objective-C
 headers = SentryClient.h SentryDefines.h SentryEnvelope.h SentryEvent.h SentryException.h SentryHub.h SentryId.h \
-SentryMechanism.h SentryOptions.h SentryScope.h SentrySDK.h SentrySdkInfo.h SentryStacktrace.h SentryThread.h \
-Private/SentryClient.h Private/SentryCrashMonitor_NSException.h Private/SentryCrashStackCursor.h \
-Private/SentryEvent.h Private/SentryHook.h Private/SentryOptions.h Private/SentrySDK.h \
-Private/SentryStacktraceBuilder.h Private/SentryThreadInspector.h Private/SentryTraceContext.h
+SentryMechanism.h SentryMechanism+NSExceptionKt.h SentryOptions.h SentryScope.h SentrySDK.h SentrySdkInfo.h \
+SentryStacktrace.h SentryThread.h SentryThread+NSExceptionKt.h Private/SentryClient.h \
+Private/SentryCrashMonitor_NSException.h Private/SentryCrashMonitor_NSException+NSExceptionKt.h \
+Private/SentryCrashStackCursor.h Private/SentryEvent.h Private/SentryHook.h Private/SentryOptions.h \
+Private/SentrySDK.h Private/SentryStacktraceBuilder.h Private/SentryThreadInspector.h Private/SentryTraceContext.h

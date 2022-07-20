@@ -1,0 +1,2 @@
+/*/src/nativeInterop/cinterop/**/*.h linguist-vendored
+/*/src/nativeInterop/cinterop/**/*+NSExceptionKt.h -linguist-vendored

@@ -27,7 +27,6 @@
 + (void)storeEnvelope:(SentryEnvelope *)envelope;
 
 @property (class) SentryHub *currentHub;
-
 @property (nonatomic, nullable, readonly, class) SentryOptions *options;
 
 @end

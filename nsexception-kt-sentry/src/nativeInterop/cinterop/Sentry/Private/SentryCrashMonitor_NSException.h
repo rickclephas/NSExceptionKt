@@ -18,20 +18,3 @@
 #import <Private/SentryCrashStackCursor.h>
 
 extern void sentrycrashsc_initWithBacktrace(SentryCrashStackCursor *cursor, const uintptr_t *backtrace, int backtraceLength, int skipEntries);
-
-SentryCrashStackCursor NSExceptionKt_SentryCrashStackCursorFromNSException(NSException *exception) {
-    NSArray *addresses = [exception callStackReturnAddresses];
-    NSUInteger numFrames = addresses.count;
-    uintptr_t *callstack = malloc(numFrames * sizeof(*callstack));
-    assert(callstack != NULL);
-    for (NSUInteger i = 0; i < numFrames; i++) {
-        callstack[i] = (uintptr_t)[addresses[i] unsignedLongLongValue];
-    }
-    SentryCrashStackCursor cursor;
-    sentrycrashsc_initWithBacktrace(&cursor, callstack, (int)numFrames, 0);
-    return cursor;
-}
-
-void NSExceptionKt_SentryCrashStackCursorCleanup(SentryCrashStackCursor cursor) {
-    sentrycrash_async_backtrace_decref(cursor.async_caller);
-}
