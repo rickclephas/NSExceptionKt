@@ -39,6 +39,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         AppInitKt.updateBugsnagConfig(config: config)
         Bugsnag.start(with: config)
         AppInitKt.setupBugsnag() // should be called after configuring Bugsnag
+        return true
     }
 }
 ```

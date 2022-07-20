@@ -33,6 +33,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     ) -> Bool {
         FirebaseApp.configure()
         AppInitKt.setupCrashlytics() // should be called after configuring Firebase
+        return true
     }
 }
 ```
