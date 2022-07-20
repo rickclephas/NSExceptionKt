@@ -47,7 +47,7 @@ That's all, now go and crash that app!
 
 ## Caused by exceptions
 
-Bugsnag has built-in support for caused by errors, so no addition configuration is required.
+Bugsnag has built-in support for caused by errors, so no additional configuration is required.
 
 ## Filtering the Kotlin termination
 
