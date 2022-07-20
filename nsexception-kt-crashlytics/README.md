@@ -1,0 +1,1 @@
+# NSExceptionKt for Firebase Crashlytics
