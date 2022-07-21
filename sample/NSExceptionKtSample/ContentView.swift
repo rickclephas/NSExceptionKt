@@ -2,9 +2,9 @@ import SwiftUI
 import shared
 
 struct ContentView: View {
-	let greet = Greeting().greeting()
-
-	var body: some View {
+    let greet = Greeting().greeting()
+    
+    var body: some View {
         VStack {
             Text(greet)
             Button {
@@ -12,13 +12,12 @@ struct ContentView: View {
             } label: {
                 Text("Crash")
             }
-
         }
-	}
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {
-	static var previews: some View {
-		ContentView()
-	}
+    static var previews: some View {
+        ContentView()
+    }
 }
