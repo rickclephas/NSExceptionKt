@@ -1,6 +1,6 @@
 // The following are snippets from the Sentry Cocoa SDK used to generate Kotlin stubs.
 //
-// https://github.com/getsentry/sentry-cocoa/blob/167de8bea5a0effef3aaa5c99c540088de30b361/Sources/Sentry/Public/SentryEvent.h
+// https://github.com/getsentry/sentry-cocoa/blob/825b2e1f8aa0569f29f45b7ca2e2a72b41637660/Sources/Sentry/Public/SentryDebugMeta.h
 //
 // The MIT License (MIT)
 //
@@ -17,19 +17,7 @@
 // copies or substantial portions of the Software.
 
 #import <Foundation/Foundation.h>
-#import <SentryDebugMeta.h>
-#import <SentryException.h>
-#import <SentryId.h>
-#import <SentryThread.h>
 
-@interface SentryEvent : NSObject
-
-- (instancetype)initWithLevel:(enum SentryLevel)level NS_DESIGNATED_INITIALIZER;
-
-@property (nonatomic, strong, nonnull) SentryId *eventId;
-@property (nonatomic, strong) NSDictionary<NSString *, NSString *> *_Nullable tags;
-@property (nonatomic, strong) NSArray<SentryThread *> *_Nullable threads;
-@property (nonatomic, strong) NSArray<SentryException *> *_Nullable exceptions;
-@property (nonatomic, strong) NSArray<SentryDebugMeta *> *_Nullable debugMeta;
+@interface SentryDebugMeta : NSObject
 
 @end

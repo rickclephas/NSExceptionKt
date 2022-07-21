@@ -64,6 +64,9 @@ private fun Throwable.asSentryEvent(): SentryEvent = SentryEvent(kSentryLevelFat
         // https://develop.sentry.dev/sdk/event-payloads/threads/
         stacktrace = null
     }
+    debugMeta = threads?.let {
+        SentryDependencyContainer.sharedInstance().debugImageProvider.getDebugImagesForThreads(it)
+    }
     exceptions = this@asSentryEvent
         .let { throwable -> throwable.causes.asReversed() + throwable }
         .map { it.asNSException().asSentryException(currentThread?.threadId) }
