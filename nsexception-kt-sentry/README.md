@@ -7,7 +7,7 @@
 
 ## Installation
 
-First make sure you have [set up](https://docs.sentry.io/platforms/apple/guides/ios/#install) Sentry.  
+First make sure you have [set up](https://docs.sentry.io/platforms/apple/guides/ios/#install) Sentry (v7.19.0 or above).  
 After that add the following dependency to your `iosMain` or `appleMain` source set.
 
 ```kotlin
