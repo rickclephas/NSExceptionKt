@@ -8,9 +8,8 @@ package com.rickclephas.kmp.nsexceptionkt.core
 public val Throwable.causes: List<Throwable> get() = buildList {
     val causes = mutableSetOf<Throwable>()
     var cause = cause
-    while (cause != null && cause !in causes) {
+    while (cause != null && causes.add(cause)) {
         add(cause)
-        causes.add(cause)
         cause = cause.cause
     }
 }
@@ -32,7 +31,7 @@ public fun Throwable.getFilteredStackTraceAddresses(
 ).dropCommonAddresses(commonAddresses)
 
 /**
- * Returns a list containing all addresses expect for the first addresses
+ * Returns a list containing all addresses except for the first addresses
  * matching the constructor call of the [qualifiedClassName].
  * If [keepLast] is `true` the last constructor call won't be dropped.
  */
@@ -57,7 +56,7 @@ internal fun List<Long>.dropInitAddresses(
 }
 
 /**
- * Returns a list containing all addresses expect for the last addresses that match with the [commonAddresses].
+ * Returns a list containing all addresses except for the last addresses that match with the [commonAddresses].
  */
 internal fun List<Long>.dropCommonAddresses(
     commonAddresses: List<Long>
