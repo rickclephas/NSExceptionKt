@@ -1,6 +1,8 @@
 plugins {
-    kotlin("multiplatform")
-    id("com.android.library")
+    @Suppress("DSL_SCOPE_VIOLATION")
+    alias(libs.plugins.kotlin.multiplatform)
+    @Suppress("DSL_SCOPE_VIOLATION")
+    alias(libs.plugins.android.library)
 }
 
 kotlin {
@@ -35,9 +37,9 @@ kotlin {
             iosArm64Main.dependsOn(this)
             iosSimulatorArm64Main.dependsOn(this)
             dependencies {
-                implementation("com.rickclephas.kmp:nsexception-kt-bugsnag:0.1.0-SNAPSHOT")
-                implementation("com.rickclephas.kmp:nsexception-kt-crashlytics:0.1.0-SNAPSHOT")
-                implementation("com.rickclephas.kmp:nsexception-kt-sentry:0.1.0-SNAPSHOT")
+                implementation("com.rickclephas.kmp:nsexception-kt-bugsnag")
+                implementation("com.rickclephas.kmp:nsexception-kt-crashlytics")
+                implementation("com.rickclephas.kmp:nsexception-kt-sentry")
             }
         }
         val iosX64Test by getting
