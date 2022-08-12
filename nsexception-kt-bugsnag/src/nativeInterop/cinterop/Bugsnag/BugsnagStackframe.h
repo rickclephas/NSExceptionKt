@@ -1,6 +1,6 @@
 // The following are snippets from the Bugsnag Cocoa SDK used to generate Kotlin stubs.
 //
-// https://github.com/bugsnag/bugsnag-cocoa/blob/6bcd46f5f8dc06ac26537875d501f02b27d219a9/Bugsnag/include/Bugsnag/BugsnagStackframe.h
+// https://github.com/bugsnag/bugsnag-cocoa/blob/bd0465cd0e753ca42eef59fef4d5ceda80da1222/Bugsnag/include/Bugsnag/BugsnagStackframe.h
 //
 // Copyright (c) 2012 Bugsnag, https://bugsnag.com/
 //
@@ -17,5 +17,7 @@
 #import <Foundation/Foundation.h>
 
 @interface BugsnagStackframe : NSObject
+
++ (NSArray<BugsnagStackframe *> *_Nonnull)stackframesWithCallStackReturnAddresses:(NSArray<NSNumber *> *_Nonnull)callStackReturnAddresses;
 
 @end
