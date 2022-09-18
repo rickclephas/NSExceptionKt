@@ -1,6 +1,6 @@
 package com.rickclephas.kmp.nsexceptionkt.sentry
 
-import Sentry.*
+import com.rickclephas.kmp.nsexceptionkt.sentry.cinterop.*
 import com.rickclephas.kmp.nsexceptionkt.core.asNSException
 import com.rickclephas.kmp.nsexceptionkt.core.causes
 import com.rickclephas.kmp.nsexceptionkt.core.wrapUnhandledExceptionHook

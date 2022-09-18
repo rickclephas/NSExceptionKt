@@ -1,6 +1,6 @@
 package com.rickclephas.kmp.nsexceptionkt.crashlytics
 
-import FirebaseCrashlytics.*
+import com.rickclephas.kmp.nsexceptionkt.crashlytics.cinterop.*
 import com.rickclephas.kmp.nsexceptionkt.core.asNSException
 import com.rickclephas.kmp.nsexceptionkt.core.causes
 import com.rickclephas.kmp.nsexceptionkt.core.wrapUnhandledExceptionHook

@@ -1,4 +1,5 @@
 language = Objective-C
+package = com.rickclephas.kmp.nsexceptionkt.sentry.cinterop
 headers = SentryClient.h SentryDebugImageProvider.h SentryDebugMeta.h SentryDefines.h SentryEnvelope.h SentryEvent.h \
 SentryException.h SentryHub.h SentryId.h SentryMechanism.h SentryMechanism+NSExceptionKt.h SentryOptions.h \
 SentryScope.h SentrySDK.h SentrySdkInfo.h SentryStacktrace.h SentryThread.h SentryThread+NSExceptionKt.h \

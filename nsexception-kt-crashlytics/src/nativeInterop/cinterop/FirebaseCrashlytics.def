@@ -1,2 +1,3 @@
 language = Objective-C
+package = com.rickclephas.kmp.nsexceptionkt.crashlytics.cinterop
 headers = FIRCrashlytics.h FIRExceptionModel.h FIRStackFrame.h Private/FIRCLSException.h

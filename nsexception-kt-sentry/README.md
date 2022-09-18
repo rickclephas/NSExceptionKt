@@ -17,7 +17,7 @@ implementation("com.rickclephas.kmp:nsexception-kt-sentry:<version>")
 and create the `dropSentryKotlinCrashEvent` and `setupSentry` functions (e.g. in your `AppInit.kt` file):
 
 ```kotlin
-import Sentry.SentryEvent
+import com.rickclephas.kmp.nsexceptionkt.sentry.cinterop.SentryEvent
 
 fun dropSentryKotlinCrashEvent(event: SentryEvent?): SentryEvent? {
     return dropKotlinCrashEvent(event)

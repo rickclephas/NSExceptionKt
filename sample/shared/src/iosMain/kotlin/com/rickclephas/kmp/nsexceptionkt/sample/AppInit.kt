@@ -1,11 +1,11 @@
 package com.rickclephas.kmp.nsexceptionkt.sample
 
-import Bugsnag.BugsnagConfiguration
-import Sentry.SentryEvent
+import com.rickclephas.kmp.nsexceptionkt.bugsnag.cinterop.BugsnagConfiguration
 import com.rickclephas.kmp.nsexceptionkt.bugsnag.configureBugsnag
 import com.rickclephas.kmp.nsexceptionkt.bugsnag.setBugsnagUnhandledExceptionHook
 import com.rickclephas.kmp.nsexceptionkt.crashlytics.CausedByStrategy
 import com.rickclephas.kmp.nsexceptionkt.crashlytics.setCrashlyticsUnhandledExceptionHook
+import com.rickclephas.kmp.nsexceptionkt.sentry.cinterop.SentryEvent
 import com.rickclephas.kmp.nsexceptionkt.sentry.dropKotlinCrashEvent
 import com.rickclephas.kmp.nsexceptionkt.sentry.setSentryUnhandledExceptionHook
 

@@ -15,7 +15,7 @@ implementation("com.rickclephas.kmp:nsexception-kt-bugsnag:<version>")
 and create the `updateBugsnagConfig` and `setupBugsnag` functions (e.g. in your `AppInit.kt` file):
 
 ```kotlin
-import Bugsnag.BugsnagConfiguration
+import com.rickclephas.kmp.nsexceptionkt.bugsnag.cinterop.BugsnagConfiguration
 
 fun updateBugsnagConfig(config: BugsnagConfiguration) {
     configureBugsnag(config)
