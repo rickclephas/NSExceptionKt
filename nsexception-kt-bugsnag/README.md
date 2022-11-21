@@ -12,7 +12,7 @@ After that add the following dependency to your `iosMain` or `appleMain` source 
 implementation("com.rickclephas.kmp:nsexception-kt-bugsnag:<version>")
 ```
 
-Make sure you have cinterop commonization enabled in your application-level `gradle.properties` otherwise you won't be able to resolve `BugsnagConfiguration`:
+Make sure you have cinterop commonization enabled in your project-level `gradle.properties` otherwise you won't be able to resolve `BugsnagConfiguration`:
 
 ```
 kotlin.mpp.enableCInteropCommonization=true
