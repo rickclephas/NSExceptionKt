@@ -14,6 +14,12 @@ After that add the following dependency to your `iosMain` or `appleMain` source 
 implementation("com.rickclephas.kmp:nsexception-kt-sentry:<version>")
 ```
 
+Make sure you have cinterop commonization enabled in your project-level `gradle.properties` otherwise you won't be able to resolve `SentryEvent`:
+
+```
+kotlin.mpp.enableCInteropCommonization=true
+```
+
 and create the `dropSentryKotlinCrashEvent` and `setupSentry` functions (e.g. in your `AppInit.kt` file):
 
 ```kotlin
