@@ -27,7 +27,6 @@ kotlin {
             }
         }
         val androidMain by getting
-        val androidTest by getting
         val iosX64Main by getting
         val iosArm64Main by getting
         val iosSimulatorArm64Main by getting
@@ -61,9 +60,4 @@ android {
         minSdk = 27
         targetSdk = 32
     }
-}
-
-// TODO: Remove workaround for https://youtrack.jetbrains.com/issue/KT-53339
-tasks.named("embedAndSignAppleFrameworkForXcode").configure {
-    enabled = false
 }
