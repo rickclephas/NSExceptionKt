@@ -61,8 +61,3 @@ android {
         targetSdk = 32
     }
 }
-
-// TODO: Remove workaround for https://youtrack.jetbrains.com/issue/KT-53339
-tasks.named("embedAndSignAppleFrameworkForXcode").configure {
-    enabled = false
-}
