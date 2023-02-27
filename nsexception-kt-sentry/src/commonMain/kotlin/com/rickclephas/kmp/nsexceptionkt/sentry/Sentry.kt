@@ -44,7 +44,7 @@ private fun Throwable.asSentryEnvelope(): SentryEnvelope {
         hub.getClient()?.prepareEvent(event, hub.scope, alwaysAttachStacktrace = false, isCrashEvent = true)
     } ?: event
     val item = SentryEnvelopeItem(preparedEvent)
-    val header = SentryEnvelopeHeader(preparedEvent.eventId, SentrySDK.options?.sdkInfo, null)
+    val header = SentryEnvelopeHeader(preparedEvent.eventId, null)
     return SentryEnvelope(header, listOf(item))
 }
 

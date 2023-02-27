@@ -20,13 +20,11 @@
 #import <Private/SentryTraceContext.h>
 #import <SentryEvent.h>
 #import <SentryId.h>
-#import <SentrySdkInfo.h>
 
 @interface SentryEnvelopeHeader : NSObject
 
 - (instancetype)initWithId:(nullable SentryId *)eventId
-                   sdkInfo:(nullable SentrySdkInfo *)sdkInfo
-              traceContext:(nullable SentryTraceContext *)traceContext NS_DESIGNATED_INITIALIZER;
+              traceContext:(nullable SentryTraceContext *)traceContext;
 
 @end
 
