@@ -15,7 +15,8 @@ kotlin {
     ).forEach {
         it.binaries.framework {
             baseName = "shared"
-            isStatic = true
+            linkerOpts("-undefined", "dynamic_lookup")
+//            isStatic = true
         }
     }
 
