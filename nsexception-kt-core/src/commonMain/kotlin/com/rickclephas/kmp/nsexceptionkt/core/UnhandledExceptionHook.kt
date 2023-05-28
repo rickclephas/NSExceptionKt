@@ -1,6 +1,7 @@
 package com.rickclephas.kmp.nsexceptionkt.core
 
-import kotlin.native.concurrent.AtomicReference
+import kotlin.experimental.ExperimentalNativeApi
+import kotlin.concurrent.AtomicReference
 import kotlin.native.concurrent.freeze
 
 /**
@@ -10,7 +11,7 @@ import kotlin.native.concurrent.freeze
  * @see setUnhandledExceptionHook
  * @see terminateWithUnhandledException
  */
-@OptIn(ExperimentalStdlibApi::class, FreezingIsDeprecated::class)
+@OptIn(FreezingIsDeprecated::class, ExperimentalNativeApi::class)
 public fun wrapUnhandledExceptionHook(hook: (Throwable) -> Unit) {
     val prevHook = AtomicReference<ReportUnhandledExceptionHook?>(null)
     val wrappedHook: ReportUnhandledExceptionHook = {

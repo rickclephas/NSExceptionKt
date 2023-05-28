@@ -4,6 +4,7 @@ import com.rickclephas.kmp.nsexceptionkt.sentry.cinterop.*
 import com.rickclephas.kmp.nsexceptionkt.core.asNSException
 import com.rickclephas.kmp.nsexceptionkt.core.causes
 import com.rickclephas.kmp.nsexceptionkt.core.wrapUnhandledExceptionHook
+import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.cinterop.UnsafeNumber
 import platform.Foundation.NSException
 import platform.Foundation.NSNumber
@@ -75,6 +76,7 @@ private fun Throwable.asSentryEvent(): SentryEvent = SentryEvent(kSentryLevelFat
 /**
  * Converts `this` [NSException] to a [SentryException].
  */
+@OptIn(ExperimentalForeignApi::class)
 private fun NSException.asSentryException(
     threadId: NSNumber?
 ): SentryException = SentryException(reason ?: "", name ?: "Throwable").apply {
