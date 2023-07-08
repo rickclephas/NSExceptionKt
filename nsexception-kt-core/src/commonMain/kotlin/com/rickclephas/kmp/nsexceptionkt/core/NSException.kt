@@ -1,5 +1,6 @@
 package com.rickclephas.kmp.nsexceptionkt.core
 
+import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.cinterop.UnsafeNumber
 import kotlinx.cinterop.convert
 import platform.Foundation.NSException
@@ -12,7 +13,7 @@ import kotlin.reflect.KClass
  * If [appendCausedBy] is `true` then the name, message and stack trace
  * of the [causes][Throwable.cause] will be appended, else causes are ignored.
  */
-@OptIn(UnsafeNumber::class)
+@OptIn(UnsafeNumber::class, ExperimentalForeignApi::class)
 public fun Throwable.asNSException(appendCausedBy: Boolean = false): NSException {
     val returnAddresses = getFilteredStackTraceAddresses().let { addresses ->
         if (!appendCausedBy) return@let addresses

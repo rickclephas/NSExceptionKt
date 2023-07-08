@@ -1,8 +1,10 @@
 package com.rickclephas.kmp.nsexceptionkt.core
 
+import kotlin.experimental.ExperimentalNativeApi
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
+@OptIn(ExperimentalNativeApi::class)
 class ThrowableCausesTests {
 
     @Test
