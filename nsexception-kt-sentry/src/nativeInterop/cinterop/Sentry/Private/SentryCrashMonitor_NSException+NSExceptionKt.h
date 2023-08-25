@@ -16,7 +16,3 @@ SentryCrashStackCursor NSExceptionKt_SentryCrashStackCursorFromNSException(NSExc
     sentrycrashsc_initWithBacktrace(&cursor, callstack, (int)numFrames, 0);
     return cursor;
 }
-
-void NSExceptionKt_SentryCrashStackCursorCleanup(SentryCrashStackCursor cursor) {
-    sentrycrash_async_backtrace_decref(cursor.async_caller);
-}

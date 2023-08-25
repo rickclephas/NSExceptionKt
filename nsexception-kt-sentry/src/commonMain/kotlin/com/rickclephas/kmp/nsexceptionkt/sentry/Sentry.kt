@@ -86,9 +86,7 @@ private fun NSException.asSentryException(
     }
     stacktrace = threadInspector?.stacktraceBuilder?.let { stacktraceBuilder ->
         val cursor = NSExceptionKt_SentryCrashStackCursorFromNSException(this@asSentryException)
-        val stacktrace = stacktraceBuilder.retrieveStacktraceFromCursor(cursor)
-        NSExceptionKt_SentryCrashStackCursorCleanup(cursor)
-        stacktrace
+        stacktraceBuilder.retrieveStacktraceFromCursor(cursor)
     }
 }
 
