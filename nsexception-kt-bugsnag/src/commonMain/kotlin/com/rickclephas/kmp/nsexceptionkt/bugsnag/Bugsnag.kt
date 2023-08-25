@@ -10,6 +10,7 @@ import platform.Foundation.NSException
  * Configures Bugsnag to ignore the Kotlin termination crash.
  */
 public fun configureBugsnag(config: BugsnagConfiguration) {
+    NSExceptionKt_OverrideBugsnagHandledStateOriginalUnhandledValue()
     NSExceptionKt_BugsnagConfigAddOnSendErrorBlock(config) { event ->
         if (event == null) return@NSExceptionKt_BugsnagConfigAddOnSendErrorBlock true
         !event.unhandled || event.featureFlags.none { (it as BugsnagFeatureFlag).name == kotlinCrashedFeatureFlag }
