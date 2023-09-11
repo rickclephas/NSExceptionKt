@@ -23,7 +23,6 @@ public fun Throwable.asNSException(appendCausedBy: Boolean = false): NSException
             }
         }
     }.map {
-        @Suppress("RemoveExplicitTypeArguments")
         NSNumber(unsignedInteger = it.convert<NSUInteger>())
     }
     return ThrowableNSException(name, getReason(appendCausedBy), returnAddresses)

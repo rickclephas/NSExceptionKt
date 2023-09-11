@@ -22,12 +22,12 @@ kotlin {
     val tvosSimulatorArm64 = tvosSimulatorArm64()
 
     sourceSets {
-        val commonMain by getting {
+        commonMain {
             dependencies {
                 implementation(project(":nsexception-kt-core"))
             }
         }
-        val commonTest by getting {
+        commonTest {
             dependencies {
                 implementation(kotlin("test"))
             }
