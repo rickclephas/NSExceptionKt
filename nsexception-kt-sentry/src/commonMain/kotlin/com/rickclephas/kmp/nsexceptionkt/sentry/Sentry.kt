@@ -21,6 +21,7 @@ public fun dropKotlinCrashEvent(event: SentryEvent?): SentryEvent? =
  * Note: once the exception is logged the program will be terminated.
  * @see wrapUnhandledExceptionHook
  */
+@OptIn(ExperimentalForeignApi::class)
 public fun setSentryUnhandledExceptionHook(): Unit = wrapUnhandledExceptionHook { throwable ->
     val envelope = throwable.asSentryEnvelope()
     // The envelope will be persisted, so we can safely terminate afterwards.
@@ -39,6 +40,7 @@ private const val kotlinCrashedTag = "nsexceptionkt.kotlin_crashed"
 /**
  * Converts `this` [Throwable] to a [SentryEnvelope].
  */
+@OptIn(ExperimentalForeignApi::class)
 private fun Throwable.asSentryEnvelope(): SentryEnvelope {
     val event = asSentryEvent()
     val preparedEvent = SentrySDK.currentHub().let { hub ->
@@ -53,7 +55,7 @@ private fun Throwable.asSentryEnvelope(): SentryEnvelope {
  * Converts `this` [Throwable] to a [SentryEvent].
  */
 @Suppress("UnnecessaryOptInAnnotation")
-@OptIn(UnsafeNumber::class)
+@OptIn(UnsafeNumber::class, ExperimentalForeignApi::class)
 private fun Throwable.asSentryEvent(): SentryEvent = SentryEvent(kSentryLevelFatal).apply {
     isCrashEvent = true
     @Suppress("UNCHECKED_CAST")
@@ -90,5 +92,6 @@ private fun NSException.asSentryException(
     }
 }
 
+@OptIn(ExperimentalForeignApi::class)
 private val threadInspector: SentryThreadInspector?
     get() = SentrySDK.currentHub().getClient()?.threadInspector

@@ -4,11 +4,13 @@ import com.rickclephas.kmp.nsexceptionkt.bugsnag.cinterop.*
 import com.rickclephas.kmp.nsexceptionkt.core.asNSException
 import com.rickclephas.kmp.nsexceptionkt.core.causes
 import com.rickclephas.kmp.nsexceptionkt.core.wrapUnhandledExceptionHook
+import kotlinx.cinterop.ExperimentalForeignApi
 import platform.Foundation.NSException
 
 /**
  * Configures Bugsnag to ignore the Kotlin termination crash.
  */
+@OptIn(ExperimentalForeignApi::class)
 public fun configureBugsnag(config: BugsnagConfiguration) {
     NSExceptionKt_OverrideBugsnagHandledStateOriginalUnhandledValue()
     NSExceptionKt_BugsnagConfigAddOnSendErrorBlock(config) { event ->
