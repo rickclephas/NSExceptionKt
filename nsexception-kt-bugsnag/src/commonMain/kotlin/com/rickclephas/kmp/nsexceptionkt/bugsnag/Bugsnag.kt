@@ -4,11 +4,13 @@ import com.rickclephas.kmp.nsexceptionkt.bugsnag.cinterop.*
 import com.rickclephas.kmp.nsexceptionkt.core.asNSException
 import com.rickclephas.kmp.nsexceptionkt.core.causes
 import com.rickclephas.kmp.nsexceptionkt.core.wrapUnhandledExceptionHook
+import kotlinx.cinterop.ExperimentalForeignApi
 import platform.Foundation.NSException
 
 /**
  * Configures Bugsnag to ignore the Kotlin termination crash.
  */
+@OptIn(ExperimentalForeignApi::class)
 public fun configureBugsnag(config: BugsnagConfiguration) {
     NSExceptionKt_OverrideBugsnagHandledStateOriginalUnhandledValue()
     NSExceptionKt_BugsnagConfigAddOnSendErrorBlock(config) { event ->
@@ -24,6 +26,8 @@ public fun configureBugsnag(config: BugsnagConfiguration) {
  * Note: once the exception is logged the program will be terminated.
  * @see wrapUnhandledExceptionHook
  */
+@Suppress("UnnecessaryOptInAnnotation")
+@OptIn(ExperimentalForeignApi::class)
 public fun setBugsnagUnhandledExceptionHook(): Unit = wrapUnhandledExceptionHook { throwable ->
     val exception = throwable.asNSException()
     val causes = throwable.causes.map { it.asNSException() }
@@ -49,6 +53,8 @@ private const val kotlinCrashedFeatureFlag = "nsexceptionkt.kotlin_crashed"
 /**
  * Converts `this` [NSException] to a [BugsnagError].
  */
+@Suppress("UnnecessaryOptInAnnotation")
+@OptIn(ExperimentalForeignApi::class)
 private fun NSException.asBugsnagError(): BugsnagError = BugsnagError().apply {
     errorClass = name
     errorMessage = reason

@@ -4,6 +4,7 @@ import com.rickclephas.kmp.nsexceptionkt.crashlytics.cinterop.*
 import com.rickclephas.kmp.nsexceptionkt.core.asNSException
 import com.rickclephas.kmp.nsexceptionkt.core.causes
 import com.rickclephas.kmp.nsexceptionkt.core.wrapUnhandledExceptionHook
+import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.cinterop.UnsafeNumber
 import platform.Foundation.NSException
 import platform.Foundation.NSNumber
@@ -36,6 +37,7 @@ public enum class CausedByStrategy {
  * @param causedByStrategy the strategy used to log [causes][Throwable.cause].
  * @see wrapUnhandledExceptionHook
  */
+@OptIn(ExperimentalForeignApi::class)
 public fun setCrashlyticsUnhandledExceptionHook(
     causedByStrategy: CausedByStrategy = CausedByStrategy.IGNORE
 ): Unit = wrapUnhandledExceptionHook { throwable ->
@@ -55,7 +57,8 @@ public fun setCrashlyticsUnhandledExceptionHook(
  * Converts `this` [NSException] to a [FIRExceptionModel].
  * An empty string is used as reason in case [reason][NSException.reason] is `null`.
  */
-@OptIn(UnsafeNumber::class)
+@Suppress("UnnecessaryOptInAnnotation")
+@OptIn(UnsafeNumber::class, ExperimentalForeignApi::class)
 private fun NSException.asFIRExceptionModel(): FIRExceptionModel = FIRExceptionModel(
     name ?: "Throwable", reason ?: ""
 ).apply {
