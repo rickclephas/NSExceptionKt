@@ -20,6 +20,12 @@ kotlin {
     }
 
     sourceSets {
+        all {
+            languageSettings {
+                compilerOptions.freeCompilerArgs.add("-Xexpect-actual-classes")
+            }
+        }
+
         val commonMain by getting
         val commonTest by getting {
             dependencies {
