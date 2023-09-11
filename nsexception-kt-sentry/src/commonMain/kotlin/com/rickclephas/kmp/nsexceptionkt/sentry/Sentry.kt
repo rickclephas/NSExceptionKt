@@ -12,6 +12,8 @@ import platform.Foundation.NSNumber
 /**
  * Drops the Kotlin crash that follows an unhandled Kotlin exception.
  */
+@Suppress("UnnecessaryOptInAnnotation")
+@OptIn(ExperimentalForeignApi::class)
 public fun dropKotlinCrashEvent(event: SentryEvent?): SentryEvent? =
     event?.takeUnless { it.isCrashEvent && (it.tags?.containsKey(kotlinCrashedTag) ?: false) }
 

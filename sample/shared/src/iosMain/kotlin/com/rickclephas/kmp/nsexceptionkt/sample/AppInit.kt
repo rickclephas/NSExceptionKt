@@ -8,7 +8,10 @@ import com.rickclephas.kmp.nsexceptionkt.crashlytics.setCrashlyticsUnhandledExce
 import com.rickclephas.kmp.nsexceptionkt.sentry.cinterop.SentryEvent
 import com.rickclephas.kmp.nsexceptionkt.sentry.dropKotlinCrashEvent
 import com.rickclephas.kmp.nsexceptionkt.sentry.setSentryUnhandledExceptionHook
+import kotlinx.cinterop.ExperimentalForeignApi
 
+@Suppress("UnnecessaryOptInAnnotation")
+@OptIn(ExperimentalForeignApi::class)
 fun updateBugsnagConfig(config: BugsnagConfiguration) {
     configureBugsnag(config)
 }
@@ -21,6 +24,8 @@ fun setupCrashlytics() {
     setCrashlyticsUnhandledExceptionHook(CausedByStrategy.APPEND)
 }
 
+@Suppress("UnnecessaryOptInAnnotation")
+@OptIn(ExperimentalForeignApi::class)
 fun dropSentryKotlinCrashEvent(event: SentryEvent?): SentryEvent? {
     return dropKotlinCrashEvent(event)
 }

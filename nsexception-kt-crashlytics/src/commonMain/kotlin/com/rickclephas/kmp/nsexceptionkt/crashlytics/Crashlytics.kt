@@ -57,7 +57,8 @@ public fun setCrashlyticsUnhandledExceptionHook(
  * Converts `this` [NSException] to a [FIRExceptionModel].
  * An empty string is used as reason in case [reason][NSException.reason] is `null`.
  */
-@OptIn(UnsafeNumber::class)
+@Suppress("UnnecessaryOptInAnnotation")
+@OptIn(UnsafeNumber::class, ExperimentalForeignApi::class)
 private fun NSException.asFIRExceptionModel(): FIRExceptionModel = FIRExceptionModel(
     name ?: "Throwable", reason ?: ""
 ).apply {
