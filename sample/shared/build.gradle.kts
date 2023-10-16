@@ -19,12 +19,15 @@ kotlin {
         }
     }
 
-    sourceSets {
-        all {
-            languageSettings {
-                compilerOptions.freeCompilerArgs.add("-Xexpect-actual-classes")
+    targets.all {
+        compilations.all {
+            compilerOptions.configure {
+                freeCompilerArgs.add("-Xexpect-actual-classes")
             }
         }
+    }
+
+    sourceSets {
         commonTest {
             dependencies {
                 implementation(kotlin("test"))
