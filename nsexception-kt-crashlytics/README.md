@@ -21,7 +21,8 @@ fun setupCrashlytics() {
 }
 ```
 
-> Note: `setCrashlyticsUnhandledExceptionHook` is only available for Apple targets,
+> [!IMPORTANT]
+> `setCrashlyticsUnhandledExceptionHook` is only available for Apple targets,
 > so you can't create `setupCrashlytics` in `commonMain`.
 
 Now go to your Xcode project and update your `AppDelegate`:
