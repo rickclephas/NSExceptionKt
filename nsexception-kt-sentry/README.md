@@ -3,7 +3,8 @@
 > Status: **experimental** 🚧  
 > The basic scenarios have been tested, but the implementation hasn't been battle-tested just yet.
 
-> ⚠️ This implementation heavily uses private APIs from the Sentry Cocoa SDK ⚠️
+> [!WARNING]
+> This implementation heavily uses private APIs from the Sentry Cocoa SDK
 
 ## Installation
 
@@ -34,7 +35,8 @@ fun setupSentry() {
 }
 ```
 
-> Note: `dropKotlinCrashEvent` and `setSentryUnhandledExceptionHook` are only available for Apple targets,
+> [!IMPORTANT]
+> `dropKotlinCrashEvent` and `setSentryUnhandledExceptionHook` are only available for Apple targets,
 > so you can't create `dropSentryKotlinCrashEvent` or `setupSentry` in `commonMain`.
 
 Now go to your Xcode project and update your `AppDelegate`:
