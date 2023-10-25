@@ -32,7 +32,8 @@ fun setupBugsnag() {
 }
 ```
 
-> Note: `configureBugsnag` and `setBugsnagUnhandledExceptionHook` are only available for Apple targets,
+> [!IMPORTANT]
+> `configureBugsnag` and `setBugsnagUnhandledExceptionHook` are only available for Apple targets,
 > so you can't create `updateBugsnagConfig` or `setupBugsnag` in `commonMain`.
 
 Now go to your Xcode project and update your `AppDelegate`:
