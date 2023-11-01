@@ -26,7 +26,6 @@ public fun configureBugsnag(config: BugsnagConfiguration) {
  * Note: once the exception is logged the program will be terminated.
  * @see wrapUnhandledExceptionHook
  */
-@Suppress("UnnecessaryOptInAnnotation")
 @OptIn(ExperimentalForeignApi::class)
 public fun setBugsnagUnhandledExceptionHook(): Unit = wrapUnhandledExceptionHook { throwable ->
     val exception = throwable.asNSException()
@@ -53,7 +52,6 @@ private const val kotlinCrashedFeatureFlag = "nsexceptionkt.kotlin_crashed"
 /**
  * Converts `this` [NSException] to a [BugsnagError].
  */
-@Suppress("UnnecessaryOptInAnnotation")
 @OptIn(ExperimentalForeignApi::class)
 private fun NSException.asBugsnagError(): BugsnagError = BugsnagError().apply {
     errorClass = name
