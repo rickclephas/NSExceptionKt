@@ -1,12 +1,10 @@
 plugins {
     @Suppress("DSL_SCOPE_VIOLATION")
     alias(libs.plugins.kotlin.multiplatform)
-    @Suppress("DSL_SCOPE_VIOLATION")
-    alias(libs.plugins.android.library)
 }
 
 kotlin {
-    androidTarget()
+    jvm()
     
     listOf(
         iosX64(),
@@ -40,14 +38,5 @@ kotlin {
                 implementation("com.rickclephas.kmp:nsexception-kt-sentry")
             }
         }
-    }
-}
-
-android {
-    compileSdk = 32
-    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
-    defaultConfig {
-        minSdk = 27
-        targetSdk = 32
     }
 }
