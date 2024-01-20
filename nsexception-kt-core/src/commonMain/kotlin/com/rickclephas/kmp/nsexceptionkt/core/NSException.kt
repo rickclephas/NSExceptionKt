@@ -1,12 +1,26 @@
 package com.rickclephas.kmp.nsexceptionkt.core
 
+import com.rickclephas.kmp.nsexceptionkt.objc.NSExceptionKtReporterProtocol
 import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.cinterop.UnsafeNumber
 import kotlinx.cinterop.convert
 import platform.Foundation.NSException
 import platform.Foundation.NSNumber
 import platform.darwin.NSUInteger
+import kotlin.experimental.ExperimentalObjCName
 import kotlin.reflect.KClass
+
+@OptIn(ExperimentalForeignApi::class, ExperimentalObjCName::class)
+public fun addReporter(
+    @ObjCName(swiftName = "_") reporter: NSExceptionKtReporterProtocol
+): Unit = wrapUnhandledExceptionHook { throwable ->
+    val requiresMergedException = reporter.requiresMergedException
+    val exceptions = mutableListOf(throwable.asNSException(requiresMergedException))
+    if (!requiresMergedException) {
+        exceptions.addAll(throwable.causes.map { it.asNSException() })
+    }
+    reporter.reportException(exceptions)
+}
 
 /**
  * Returns a [NSException] representing `this` [Throwable].
