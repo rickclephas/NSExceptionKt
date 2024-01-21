@@ -1,6 +1,7 @@
 import Foundation
 import UIKit
 import Bugsnag
+import NSExceptionKtBugsnag
 import Firebase
 import NSExceptionKtCrashlytics
 import Sentry
@@ -14,6 +15,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         
         // Setup Bugsnag
         let config = BugsnagConfiguration.loadConfig()
+        NSExceptionKt.addReporter(.bugsnag(config))
         Bugsnag.start(with: config)
         
         // Setup Firebase Craslytics

@@ -9,12 +9,20 @@ let package = Package(
         .library(
             name: "NSExceptionKtCrashlytics",
             targets: ["NSExceptionKtCrashlytics"]
+        ),
+        .library(
+            name: "NSExceptionKtBugsnag",
+            targets: ["NSExceptionKtBugsnag"]
         )
     ],
     dependencies: [
         .package(
             url: "https://github.com/firebase/firebase-ios-sdk.git",
             "9.3.0"..<"11.0.0"
+        ),
+        .package(
+            url: "https://github.com/bugsnag/bugsnag-cocoa.git",
+            "6.22.1"..<"7.0.0"
         )
     ],
     targets: [
@@ -23,6 +31,7 @@ let package = Package(
             path: "NSExceptionKtCoreObjC",
             publicHeadersPath: "."
         ),
+        
         .target(
             name: "NSExceptionKtCrashlyticsObjC",
             path: "NSExceptionKtCrashlyticsObjC",
@@ -36,6 +45,15 @@ let package = Package(
                 .product(name: "FirebaseCrashlytics", package: "firebase-ios-sdk")
             ],
             path: "NSExceptionKtCrashlytics"
+        ),
+        
+        .target(
+            name: "NSExceptionKtBugsnag",
+            dependencies: [
+                .target(name: "NSExceptionKtCoreObjC"),
+                .product(name: "Bugsnag", package: "bugsnag-cocoa")
+            ],
+            path: "NSExceptionKtBugsnag"
         )
     ]
 )

@@ -12,6 +12,7 @@
 		1D6E50CC28898E410014D54B /* Bugsnag in Frameworks */ = {isa = PBXBuildFile; productRef = 1D6E50CB28898E410014D54B /* Bugsnag */; };
 		1D6E50CF2889912F0014D54B /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 1D6E50CE2889912F0014D54B /* FirebaseCrashlytics */; };
 		1D6E50D32889927D0014D54B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1D6E50D22889927D0014D54B /* GoogleService-Info.plist */; };
+		1D903F6C2B5D19C400282F69 /* NSExceptionKtBugsnag in Frameworks */ = {isa = PBXBuildFile; productRef = 1D903F6B2B5D19C400282F69 /* NSExceptionKtBugsnag */; };
 		1DBB947D28897CA200E79663 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBB947C28897CA200E79663 /* AppDelegate.swift */; };
 		1DBB948028897D4700E79663 /* Sentry in Frameworks */ = {isa = PBXBuildFile; productRef = 1DBB947F28897D4700E79663 /* Sentry */; };
 		1DC987412B5C509D007CF172 /* NSExceptionKtCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 1DC987402B5C509D007CF172 /* NSExceptionKtCrashlytics */; };
@@ -53,6 +54,7 @@
 				1D6E50CF2889912F0014D54B /* FirebaseCrashlytics in Frameworks */,
 				1D6E50CC28898E410014D54B /* Bugsnag in Frameworks */,
 				1DBB948028897D4700E79663 /* Sentry in Frameworks */,
+				1D903F6C2B5D19C400282F69 /* NSExceptionKtBugsnag in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,6 +134,7 @@
 				1D6E50CB28898E410014D54B /* Bugsnag */,
 				1D6E50CE2889912F0014D54B /* FirebaseCrashlytics */,
 				1DC987402B5C509D007CF172 /* NSExceptionKtCrashlytics */,
+				1D903F6B2B5D19C400282F69 /* NSExceptionKtBugsnag */,
 			);
 			productName = NSExceptionKtSample;
 			productReference = 7555FF7B242A565900829871 /* NSExceptionKtSample.app */;
@@ -513,6 +516,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1D6E50CD2889912F0014D54B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseCrashlytics;
+		};
+		1D903F6B2B5D19C400282F69 /* NSExceptionKtBugsnag */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = NSExceptionKtBugsnag;
 		};
 		1DBB947F28897D4700E79663 /* Sentry */ = {
 			isa = XCSwiftPackageProductDependency;
