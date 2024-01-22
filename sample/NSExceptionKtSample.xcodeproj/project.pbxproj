@@ -14,7 +14,6 @@
 		1D6E50D32889927D0014D54B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1D6E50D22889927D0014D54B /* GoogleService-Info.plist */; };
 		1D903F6C2B5D19C400282F69 /* NSExceptionKtBugsnag in Frameworks */ = {isa = PBXBuildFile; productRef = 1D903F6B2B5D19C400282F69 /* NSExceptionKtBugsnag */; };
 		1DBB947D28897CA200E79663 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBB947C28897CA200E79663 /* AppDelegate.swift */; };
-		1DBB948028897D4700E79663 /* Sentry in Frameworks */ = {isa = PBXBuildFile; productRef = 1DBB947F28897D4700E79663 /* Sentry */; };
 		1DC987412B5C509D007CF172 /* NSExceptionKtCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 1DC987402B5C509D007CF172 /* NSExceptionKtCrashlytics */; };
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
@@ -53,7 +52,6 @@
 				1DC987412B5C509D007CF172 /* NSExceptionKtCrashlytics in Frameworks */,
 				1D6E50CF2889912F0014D54B /* FirebaseCrashlytics in Frameworks */,
 				1D6E50CC28898E410014D54B /* Bugsnag in Frameworks */,
-				1DBB948028897D4700E79663 /* Sentry in Frameworks */,
 				1D903F6C2B5D19C400282F69 /* NSExceptionKtBugsnag in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -130,7 +128,6 @@
 			);
 			name = NSExceptionKtSample;
 			packageProductDependencies = (
-				1DBB947F28897D4700E79663 /* Sentry */,
 				1D6E50CB28898E410014D54B /* Bugsnag */,
 				1D6E50CE2889912F0014D54B /* FirebaseCrashlytics */,
 				1DC987402B5C509D007CF172 /* NSExceptionKtCrashlytics */,
@@ -165,7 +162,6 @@
 			);
 			mainGroup = 7555FF72242A565900829871;
 			packageReferences = (
-				1DBB947E28897D4700E79663 /* XCRemoteSwiftPackageReference "sentry-cocoa" */,
 				1D6E50CA28898E410014D54B /* XCRemoteSwiftPackageReference "bugsnag-cocoa" */,
 				1D6E50CD2889912F0014D54B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				1DC9873F2B5C509C007CF172 /* XCLocalSwiftPackageReference ".." */,
@@ -496,14 +492,6 @@
 				version = 9.3.0;
 			};
 		};
-		1DBB947E28897D4700E79663 /* XCRemoteSwiftPackageReference "sentry-cocoa" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/getsentry/sentry-cocoa.git";
-			requirement = {
-				kind = exactVersion;
-				version = 7.21.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -520,11 +508,6 @@
 		1D903F6B2B5D19C400282F69 /* NSExceptionKtBugsnag */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = NSExceptionKtBugsnag;
-		};
-		1DBB947F28897D4700E79663 /* Sentry */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 1DBB947E28897D4700E79663 /* XCRemoteSwiftPackageReference "sentry-cocoa" */;
-			productName = Sentry;
 		};
 		1DC987402B5C509D007CF172 /* NSExceptionKtCrashlytics */ = {
 			isa = XCSwiftPackageProductDependency;
