@@ -10,6 +10,16 @@ import platform.darwin.NSUInteger
 import kotlin.experimental.ExperimentalObjCName
 import kotlin.reflect.KClass
 
+/**
+ * Registers a [reporter] used to report unhandled Kotlin exceptions.
+ *
+ * The unhandled exception hook is wrapped such that the unhandled exception is reported
+ * before the currently set unhandled exception hook is invoked.
+ * Note: once the unhandled exception hook returns the program will be terminated.
+ *
+ * @see setUnhandledExceptionHook
+ * @see terminateWithUnhandledException
+ */
 @OptIn(ExperimentalForeignApi::class, ExperimentalObjCName::class)
 public fun addReporter(
     @ObjCName(swiftName = "_") reporter: NSExceptionKtReporterProtocol
