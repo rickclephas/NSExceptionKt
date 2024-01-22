@@ -8,6 +8,7 @@
 import Bugsnag
 
 internal extension BugsnagError {
+    /// Creates a BugsnagError from a NSException.
     convenience init(_ exception: NSException) {
         self.init()
         errorClass = exception.name.rawValue

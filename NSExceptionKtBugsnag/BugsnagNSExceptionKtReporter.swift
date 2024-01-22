@@ -9,6 +9,9 @@ import NSExceptionKtCoreObjC
 import Bugsnag
 
 public extension NSExceptionKtReporter where Self == NSExceptionKtReporter {
+    /// Configures Bugsnag and creates a ``NSExceptionKtCoreObjC/NSExceptionKtReporter`` that will report unhandled Kotlin exceptions to Bugsnag.
+    /// - Parameter config: The Bugsnag configuration that will be updated to support unhandled Kotlin exceptions.
+    /// - Returns: A ``NSExceptionKtCoreObjC/NSExceptionKtReporter`` that will report exceptions to Bugsnag.
     static func bugsnag(_ config: BugsnagConfiguration) -> NSExceptionKtReporter {
         overrideOriginalUnhandledValue()
         config.addOnSendError { event in

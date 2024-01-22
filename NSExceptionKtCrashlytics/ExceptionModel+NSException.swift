@@ -8,6 +8,7 @@
 import FirebaseCrashlytics
 
 internal extension ExceptionModel {
+    /// Creates an ExceptionModel from a NSException.
     convenience init(_ exception: NSException) {
         self.init(name: exception.name.rawValue, reason: exception.reason ?? "")
         stackTrace = exception.callStackReturnAddresses.map { address in
