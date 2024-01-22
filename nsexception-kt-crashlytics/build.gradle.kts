@@ -22,6 +22,9 @@ kotlin {
     val tvosSimulatorArm64 = tvosSimulatorArm64()
 
     sourceSets {
+        all {
+            languageSettings.optIn("com.rickclephas.kmp.nsexceptionkt.core.InternalNSExceptionKtApi")
+        }
         commonMain {
             dependencies {
                 implementation(project(":nsexception-kt-core"))

@@ -27,6 +27,7 @@ public fun addReporter(
  * If [appendCausedBy] is `true` then the name, message and stack trace
  * of the [causes][Throwable.cause] will be appended, else causes are ignored.
  */
+@InternalNSExceptionKtApi
 @OptIn(UnsafeNumber::class, ExperimentalForeignApi::class)
 public fun Throwable.asNSException(appendCausedBy: Boolean = false): NSException {
     val returnAddresses = getFilteredStackTraceAddresses().let { addresses ->

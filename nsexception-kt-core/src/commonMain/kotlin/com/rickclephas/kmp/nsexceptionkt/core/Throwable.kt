@@ -7,6 +7,7 @@ import kotlin.experimental.ExperimentalNativeApi
  * The first element will be the cause, the second the cause of the cause, etc.
  * This function stops once a reference cycles is detected.
  */
+@InternalNSExceptionKtApi
 public val Throwable.causes: List<Throwable> get() = buildList {
     val causes = mutableSetOf<Throwable>()
     var cause = cause
@@ -23,6 +24,7 @@ public val Throwable.causes: List<Throwable> get() = buildList {
  * @param commonAddresses a list of addresses used to drop the last common addresses.
  * @see getStackTraceAddresses
  */
+@InternalNSExceptionKtApi
 @OptIn(ExperimentalNativeApi::class)
 public fun Throwable.getFilteredStackTraceAddresses(
     keepLastInit: Boolean = false,
