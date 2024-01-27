@@ -3,6 +3,3 @@ kotlin = "2.0.0-Beta2"
 
 [plugins]
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
-
-# Sample plugins
-android-library = { id = "com.android.library", version = "7.2.1" }
