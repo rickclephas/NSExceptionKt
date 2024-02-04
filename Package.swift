@@ -5,6 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "NSExceptionKt",
+    platforms: [.iOS(.v11), .macOS(.v10_13), .tvOS(.v12), .watchOS(.v7)],
     products: [
         .library(
             name: "NSExceptionKtCrashlytics",
@@ -55,5 +56,6 @@ let package = Package(
             ],
             path: "NSExceptionKtBugsnag"
         )
-    ]
+    ],
+    swiftLanguageVersions: [.v5]
 )
