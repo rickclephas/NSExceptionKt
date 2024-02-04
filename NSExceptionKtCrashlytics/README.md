@@ -2,7 +2,7 @@
 
 ## Installation
 
-First make sure you have [set up](https://firebase.google.com/docs/crashlytics/get-started?platform=ios) Crashlytics (v6.21.0 or above).  
+First make sure you have [set up](https://firebase.google.com/docs/crashlytics/get-started?platform=ios) Crashlytics (v9.3.0 or above).  
 
 After that add and export the Kotlin dependency to your `appleMain` source set.
 
@@ -51,7 +51,7 @@ That's all, now go and crash that app!
 The Firebase Crashlytics iOS SDK has a limited API, which means it ([currently](https://github.com/firebase/firebase-ios-sdk/issues/10030))
 doesn't support the concept of caused by exceptions.
 
-NSExceptionKt provided 3 different strategies to handles this:
+NSExceptionKt provides 3 different strategies to handle this:
 ```swift
 public enum CausedByStrategy {
     /// Causes will be ignored, only the main Throwable is logged as a fatal exception.
