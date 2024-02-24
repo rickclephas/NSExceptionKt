@@ -12,6 +12,7 @@ import platform.Foundation.NSNumber
 /**
  * Defines strategies for logging [causes][Throwable.cause].
  */
+@Deprecated("Use addReporter with one of the Swift implementations instead")
 public enum class CausedByStrategy {
     /**
      * Causes will be ignored,
@@ -37,6 +38,7 @@ public enum class CausedByStrategy {
  * @param causedByStrategy the strategy used to log [causes][Throwable.cause].
  * @see wrapUnhandledExceptionHook
  */
+@Deprecated("Use addReporter with one of the Swift implementations instead")
 @OptIn(ExperimentalForeignApi::class)
 public fun setCrashlyticsUnhandledExceptionHook(
     causedByStrategy: CausedByStrategy = CausedByStrategy.IGNORE

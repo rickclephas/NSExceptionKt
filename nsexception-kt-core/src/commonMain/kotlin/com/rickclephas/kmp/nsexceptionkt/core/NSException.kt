@@ -1,18 +1,43 @@
 package com.rickclephas.kmp.nsexceptionkt.core
 
+import com.rickclephas.kmp.nsexceptionkt.objc.NSExceptionKtReporterProtocol
 import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.cinterop.UnsafeNumber
 import kotlinx.cinterop.convert
 import platform.Foundation.NSException
 import platform.Foundation.NSNumber
 import platform.darwin.NSUInteger
+import kotlin.experimental.ExperimentalObjCName
 import kotlin.reflect.KClass
+
+/**
+ * Registers a [reporter] used to report unhandled Kotlin exceptions.
+ *
+ * The unhandled exception hook is wrapped such that the unhandled exception is reported
+ * before the currently set unhandled exception hook is invoked.
+ * Note: once the unhandled exception hook returns the program will be terminated.
+ *
+ * @see setUnhandledExceptionHook
+ * @see terminateWithUnhandledException
+ */
+@OptIn(ExperimentalForeignApi::class, ExperimentalObjCName::class)
+public fun addReporter(
+    @ObjCName(swiftName = "_") reporter: NSExceptionKtReporterProtocol
+): Unit = wrapUnhandledExceptionHook { throwable ->
+    val requiresMergedException = reporter.requiresMergedException
+    val exceptions = mutableListOf(throwable.asNSException(requiresMergedException))
+    if (!requiresMergedException) {
+        exceptions.addAll(throwable.causes.map { it.asNSException() })
+    }
+    reporter.reportException(exceptions)
+}
 
 /**
  * Returns a [NSException] representing `this` [Throwable].
  * If [appendCausedBy] is `true` then the name, message and stack trace
  * of the [causes][Throwable.cause] will be appended, else causes are ignored.
  */
+@InternalNSExceptionKtApi
 @OptIn(UnsafeNumber::class, ExperimentalForeignApi::class)
 public fun Throwable.asNSException(appendCausedBy: Boolean = false): NSException {
     val returnAddresses = getFilteredStackTraceAddresses().let { addresses ->

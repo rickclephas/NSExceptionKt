@@ -6,6 +6,7 @@ plugins {
 
 kotlin {
     explicitApi()
+    jvmToolchain(11)
 
     val macosX64 = macosX64()
     val macosArm64 = macosArm64()
@@ -22,6 +23,9 @@ kotlin {
     val tvosSimulatorArm64 = tvosSimulatorArm64()
 
     sourceSets {
+        all {
+            languageSettings.optIn("com.rickclephas.kmp.nsexceptionkt.core.InternalNSExceptionKtApi")
+        }
         commonMain {
             dependencies {
                 implementation(project(":nsexception-kt-core"))
