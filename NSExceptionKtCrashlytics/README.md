@@ -4,13 +4,14 @@
 
 First make sure you have [set up](https://firebase.google.com/docs/crashlytics/get-started?platform=ios) Crashlytics (v9.3.0 or above).  
 
-After that add and export the Kotlin dependency to your `appleMain` source set.
+After that add and [export](https://kotlinlang.org/docs/multiplatform-build-native-binaries.html#export-dependencies-to-binaries) 
+the Kotlin dependency to your `appleMain` source set.
 
 ```kotlin
 kotlin {
-    iosArm64 {
+    iosArm64 { // and/or any other Apple target 
         binaries.framework {
-            isStatic = true
+            isStatic = true // it's recommended to use a static framework
             export("com.rickclephas.kmp:nsexception-kt-core:<version>")
         }
     }
