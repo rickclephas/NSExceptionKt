@@ -7,8 +7,6 @@
 		<key>apiKey</key>
 		<string>$(BUGSNAG_API_KEY)</string>
 	</dict>
-	<key>SENTRY_DSN</key>
-	<string>$(SENTRY_DSN)</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>

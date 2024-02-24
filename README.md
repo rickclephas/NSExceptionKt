@@ -6,9 +6,8 @@ A Kotlin Multiplatform Library to improve crash reports on Apple platforms.
 
 Checkout the implementation specific `README`s for usage and installation details:
 
-* [Crashlytics](nsexception-kt-crashlytics/README.md)
-* [Bugsnag](nsexception-kt-bugsnag/README.md)
-* [Sentry](nsexception-kt-sentry/README.md)
+* [Crashlytics](NSExceptionKtCrashlytics/README.md)
+* [Bugsnag](NSExceptionKtBugsnag/README.md)
 
 ## Why this library?
 

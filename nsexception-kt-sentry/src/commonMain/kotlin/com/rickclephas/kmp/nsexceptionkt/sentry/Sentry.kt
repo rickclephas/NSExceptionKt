@@ -12,6 +12,7 @@ import platform.Foundation.NSNumber
 /**
  * Drops the Kotlin crash that follows an unhandled Kotlin exception.
  */
+@Deprecated("Use the official Sentry KMP SDK instead")
 @OptIn(ExperimentalForeignApi::class)
 public fun dropKotlinCrashEvent(event: SentryEvent?): SentryEvent? =
     event?.takeUnless { it.isCrashEvent && (it.tags?.containsKey(kotlinCrashedTag) ?: false) }
@@ -22,6 +23,7 @@ public fun dropKotlinCrashEvent(event: SentryEvent?): SentryEvent? =
  * Note: once the exception is logged the program will be terminated.
  * @see wrapUnhandledExceptionHook
  */
+@Deprecated("Use the official Sentry KMP SDK instead")
 @OptIn(ExperimentalForeignApi::class)
 public fun setSentryUnhandledExceptionHook(): Unit = wrapUnhandledExceptionHook { throwable ->
     val envelope = throwable.asSentryEnvelope()

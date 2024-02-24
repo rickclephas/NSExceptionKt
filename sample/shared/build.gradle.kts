@@ -14,6 +14,7 @@ kotlin {
         it.binaries.framework {
             baseName = "shared"
             isStatic = true
+            export("com.rickclephas.kmp:nsexception-kt-core")
         }
     }
 
@@ -33,9 +34,7 @@ kotlin {
         }
         iosMain {
             dependencies {
-                implementation("com.rickclephas.kmp:nsexception-kt-bugsnag")
-                implementation("com.rickclephas.kmp:nsexception-kt-crashlytics")
-                implementation("com.rickclephas.kmp:nsexception-kt-sentry")
+                api("com.rickclephas.kmp:nsexception-kt-core")
             }
         }
     }
