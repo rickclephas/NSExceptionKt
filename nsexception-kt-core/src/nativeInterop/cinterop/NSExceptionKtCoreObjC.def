@@ -1,0 +1,3 @@
+language = Objective-C
+package = com.rickclephas.kmp.nsexceptionkt.objc
+headers = NSExceptionKtCoreObjC.h

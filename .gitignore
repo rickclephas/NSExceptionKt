@@ -1,7 +1,8 @@
 local.properties
+/Package.resolved
 
-# Created by https://www.toptal.com/developers/gitignore/api/gradle,kotlin,intellij
-# Edit at https://www.toptal.com/developers/gitignore?templates=gradle,kotlin,intellij
+# Created by https://www.toptal.com/developers/gitignore/api/gradle,kotlin,intellij,xcode,swiftpackagemanager
+# Edit at https://www.toptal.com/developers/gitignore?templates=gradle,kotlin,intellij,xcode,swiftpackagemanager
 
 ### Intellij ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
@@ -142,6 +143,30 @@ fabric.properties
 hs_err_pid*
 replay_pid*
 
+### SwiftPackageManager ###
+Packages
+.build/
+xcuserdata
+DerivedData/
+*.xcodeproj
+
+### Xcode ###
+## User settings
+xcuserdata/
+
+## Xcode 8 and earlier
+*.xcscmblueprint
+*.xccheckout
+
+### Xcode Patch ###
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata/
+!*.xcodeproj/project.xcworkspace/
+!*.xcworkspace/contents.xcworkspacedata
+/*.gcno
+**/xcshareddata/WorkspaceSettings.xcsettings
+
 ### Gradle ###
 .gradle
 **/build/
@@ -165,4 +190,8 @@ gradle-app.setting
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
 
-# End of https://www.toptal.com/developers/gitignore/api/gradle,kotlin,intellij
+### Gradle Patch ###
+# Java heap dump
+*.hprof
+
+# End of https://www.toptal.com/developers/gitignore/api/gradle,kotlin,intellij,xcode,swiftpackagemanager

@@ -1,0 +1,25 @@
+name: Publish a Swift release
+on:
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+'
+      - 'v[0-9]+.[0-9]+.[0-9]+-ALPHA-[0-9]+'
+      - 'v[0-9]+.[0-9]+.[0-9]+-BETA-[0-9]+'
+jobs:
+  publish-spm-tags:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Publish Bugsnag SPM tag
+        uses: ./.github/actions/publish-spm-tag
+        with:
+          package-name: bugsnag
+          version-name: ${{ github.ref_name }}
+      - name: Publish Crashlytics SPM tag
+        uses: ./.github/actions/publish-spm-tag
+        with:
+          package-name: crashlytics
+          version-name: ${{ github.ref_name }}

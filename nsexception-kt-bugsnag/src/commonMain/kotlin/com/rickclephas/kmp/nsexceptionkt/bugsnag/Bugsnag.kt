@@ -10,6 +10,7 @@ import platform.Foundation.NSException
 /**
  * Configures Bugsnag to ignore the Kotlin termination crash.
  */
+@Deprecated("Use addReporter with one of the Swift implementations instead")
 @OptIn(ExperimentalForeignApi::class)
 public fun configureBugsnag(config: BugsnagConfiguration) {
     NSExceptionKt_OverrideBugsnagHandledStateOriginalUnhandledValue()
@@ -26,6 +27,7 @@ public fun configureBugsnag(config: BugsnagConfiguration) {
  * Note: once the exception is logged the program will be terminated.
  * @see wrapUnhandledExceptionHook
  */
+@Deprecated("Use addReporter with one of the Swift implementations instead")
 @OptIn(ExperimentalForeignApi::class)
 public fun setBugsnagUnhandledExceptionHook(): Unit = wrapUnhandledExceptionHook { throwable ->
     val exception = throwable.asNSException()
