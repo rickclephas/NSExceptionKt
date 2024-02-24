@@ -4,8 +4,9 @@ plugins {
 }
 
 kotlin {
+    jvmToolchain(11)
+
     jvm()
-    
     listOf(
         iosX64(),
         iosArm64(),
