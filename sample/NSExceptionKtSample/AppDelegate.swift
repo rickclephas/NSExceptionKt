@@ -19,7 +19,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         
         // Setup Firebase Craslytics
         FirebaseApp.configure()
-        NSExceptionKt.addReporter(.crashlytics(causedByStrategy: .logNonFatal))
+        NSExceptionKt.addReporter(.crashlytics(causedByStrategy: .append))
         
         return true
     }
