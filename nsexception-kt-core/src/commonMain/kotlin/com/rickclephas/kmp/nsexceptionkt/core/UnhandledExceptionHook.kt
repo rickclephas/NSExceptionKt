@@ -2,7 +2,6 @@ package com.rickclephas.kmp.nsexceptionkt.core
 
 import kotlin.experimental.ExperimentalNativeApi
 import kotlin.concurrent.AtomicReference
-import kotlin.native.concurrent.freeze
 
 /**
  * Wraps the unhandled exception hook such that the provided [hook] is invoked
@@ -12,7 +11,7 @@ import kotlin.native.concurrent.freeze
  * @see terminateWithUnhandledException
  */
 @InternalNSExceptionKtApi
-@OptIn(FreezingIsDeprecated::class, ExperimentalNativeApi::class)
+@OptIn(ExperimentalNativeApi::class)
 public fun wrapUnhandledExceptionHook(hook: (Throwable) -> Unit) {
     val prevHook = AtomicReference<ReportUnhandledExceptionHook?>(null)
     val wrappedHook: ReportUnhandledExceptionHook = {
@@ -20,5 +19,5 @@ public fun wrapUnhandledExceptionHook(hook: (Throwable) -> Unit) {
         prevHook.value?.invoke(it)
         terminateWithUnhandledException(it)
     }
-    prevHook.value = setUnhandledExceptionHook(wrappedHook.freeze())
+    prevHook.value = setUnhandledExceptionHook(wrappedHook)
 }
