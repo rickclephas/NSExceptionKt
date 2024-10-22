@@ -47,6 +47,9 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
 That's all, now go and crash that app!
 
+> [!NOTE]
+> Use the `-spm-crashlytics` version suffix to prevent SPM from downloading other dependencies.
+
 ## Implementation details
 
 The Firebase Crashlytics iOS SDK has a limited API, which means it ([currently](https://github.com/firebase/firebase-ios-sdk/issues/10030))
