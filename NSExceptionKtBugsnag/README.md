@@ -48,6 +48,9 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
 That's all, now go and crash that app!
 
+> [!NOTE]
+> Use the `-spm-bugsnag` version suffix to prevent SPM from downloading other dependencies.
+
 ## Implementation details
 
 Bugsnag has built-in support for caused by errors. 
