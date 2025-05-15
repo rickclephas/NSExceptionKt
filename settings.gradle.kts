@@ -7,7 +7,4 @@ pluginManagement {
 
 rootProject.name = "NSExceptionKt"
 
-include(":nsexception-kt-bugsnag")
 include(":nsexception-kt-core")
-include(":nsexception-kt-crashlytics")
-include(":nsexception-kt-sentry")
