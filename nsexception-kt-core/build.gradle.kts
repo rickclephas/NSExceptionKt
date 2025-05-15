@@ -22,9 +22,6 @@ kotlin {
     }
 
     sourceSets {
-        all {
-            languageSettings.optIn("com.rickclephas.kmp.nsexceptionkt.core.InternalNSExceptionKtApi")
-        }
         commonTest {
             dependencies {
                 implementation(kotlin("test"))
