@@ -1,5 +1,4 @@
 plugins {
-    @Suppress("DSL_SCOPE_VIOLATION")
     alias(libs.plugins.kotlin.multiplatform)
     `nsexception-kt-publish`
 }
@@ -22,9 +21,6 @@ kotlin {
     }
 
     sourceSets {
-        all {
-            languageSettings.optIn("com.rickclephas.kmp.nsexceptionkt.core.InternalNSExceptionKtApi")
-        }
         commonTest {
             dependencies {
                 implementation(kotlin("test"))

@@ -10,9 +10,8 @@ import kotlin.concurrent.AtomicReference
  * @see setUnhandledExceptionHook
  * @see terminateWithUnhandledException
  */
-@InternalNSExceptionKtApi
 @OptIn(ExperimentalNativeApi::class)
-public fun wrapUnhandledExceptionHook(hook: (Throwable) -> Unit) {
+internal fun wrapUnhandledExceptionHook(hook: (Throwable) -> Unit) {
     val prevHook = AtomicReference<ReportUnhandledExceptionHook?>(null)
     val wrappedHook: ReportUnhandledExceptionHook = {
         hook(it)
