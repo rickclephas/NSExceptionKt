@@ -1,6 +1,6 @@
 plugins {
-    alias(libs.plugins.kotlin.multiplatform)
-    `nsexception-kt-publish`
+    id("nsexception-kt-kotlin-multiplatform")
+    id("nsexception-kt-publish")
 }
 
 kotlin {
