@@ -67,6 +67,6 @@ internal fun List<Long>.dropCommonAddresses(
     var i = commonAddresses.size
     if (i == 0) return this
     return dropLastWhile {
-        i-- >= 0 && commonAddresses[i] == it
+        i-- > 0 && commonAddresses[i] == it
     }
 }
