@@ -5,7 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "NSExceptionKt",
-    platforms: [.iOS(.v11), .macOS(.v10_13), .tvOS(.v12), .watchOS(.v7)],
+    platforms: [.iOS(.v15), .macOS(.v10_15), .tvOS(.v15), .watchOS(.v7)],
     products: [
         .library(
             name: "NSExceptionKtBugsnag",
