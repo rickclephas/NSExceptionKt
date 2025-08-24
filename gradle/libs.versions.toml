@@ -1,5 +1,5 @@
 [versions]
-kotlin = "2.2.20-Beta2"
+kotlin = "2.2.20-RC"
 
 [libraries]
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
