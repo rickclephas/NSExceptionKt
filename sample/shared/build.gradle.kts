@@ -44,5 +44,10 @@ kotlin {
     swiftExport {
         moduleName = "Shared"
         flattenPackage = "com.rickclephas.kmp.nsexceptionkt.sample"
+
+        export("com.rickclephas.kmp:nsexception-kt-core") {
+            moduleName = "NSExceptionKt"
+            flattenPackage = "com.rickclephas.kmp.nsexceptionkt.core"
+        }
     }
 }
