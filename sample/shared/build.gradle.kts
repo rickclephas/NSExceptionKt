@@ -42,7 +42,7 @@ kotlin {
     }
 
     swiftExport {
-        moduleName = "shared"
+        moduleName = "Shared"
         flattenPackage = "com.rickclephas.kmp.nsexceptionkt.sample"
     }
 }

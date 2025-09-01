@@ -4,7 +4,7 @@ import Bugsnag
 import NSExceptionKtBugsnag
 import Firebase
 import NSExceptionKtCrashlytics
-import shared
+import Shared
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     func application(
