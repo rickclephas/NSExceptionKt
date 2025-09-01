@@ -243,7 +243,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./gradlew :shared:embedAndSignAppleFrameworkForXcode\n";
+			shellScript = "./gradlew :shared:embedSwiftExportForXcode\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

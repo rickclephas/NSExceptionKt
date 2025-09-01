@@ -40,4 +40,9 @@ kotlin {
             }
         }
     }
+
+    swiftExport {
+        moduleName = "shared"
+        flattenPackage = "com.rickclephas.kmp.nsexceptionkt.sample"
+    }
 }

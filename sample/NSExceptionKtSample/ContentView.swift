@@ -8,7 +8,7 @@ struct ContentView: View {
         VStack {
             Text(greet)
             Button {
-                CrashKt.throwException()
+                throwException()
             } label: {
                 Text("Crash")
             }
