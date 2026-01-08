@@ -38,7 +38,7 @@ public fun addReporter(
  * of the [causes][Throwable.cause] will be appended, else causes are ignored.
  */
 @OptIn(UnsafeNumber::class, ExperimentalForeignApi::class)
-internal fun Throwable.asNSException(appendCausedBy: Boolean = false): NSException {
+internal fun Throwable.asNSException(appendCausedBy: Boolean = false): NSException = try {
     val returnAddresses = getFilteredStackTraceAddresses().let { addresses ->
         if (!appendCausedBy) return@let addresses
         addresses.toMutableList().apply {
@@ -46,10 +46,10 @@ internal fun Throwable.asNSException(appendCausedBy: Boolean = false): NSExcepti
                 addAll(cause.getFilteredStackTraceAddresses(true, addresses))
             }
         }
-    }.map {
-        NSNumber(unsignedInteger = it.convert<NSUInteger>())
-    }
-    return ThrowableNSException(name, getReason(appendCausedBy), returnAddresses)
+    }.map { NSNumber(unsignedInteger = it.convert<NSUInteger>()) }
+    ThrowableNSException(name, getReason(appendCausedBy), returnAddresses)
+} catch (e: Throwable) {
+    ThrowableNSException(name, message, emptyList())
 }
 
 /**
