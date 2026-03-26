@@ -24,6 +24,8 @@ private class CrashlyticsNSExceptionKtReporter: NSExceptionKtReporter {
     
     private let crashlytics: Crashlytics
     private let causedByStrategy: CausedByStrategy
+    private static var isReporting = false
+    private static let lock = NSLock()
     
     public var requiresMergedException: Bool { causedByStrategy == .append }
     
@@ -33,6 +35,20 @@ private class CrashlyticsNSExceptionKtReporter: NSExceptionKtReporter {
     }
     
     public func reportException(_ exceptions: [NSException]) {
+        Self.lock.lock()
+        guard !Self.isReporting else {
+            Self.lock.unlock()
+            return
+        }
+        Self.isReporting = true
+        Self.lock.unlock()
+        
+        defer {
+            Self.lock.lock()
+            Self.isReporting = false
+            Self.lock.unlock()
+        }
+        
         if causedByStrategy == .logNonFatal {
             for exception in exceptions.reversed().dropLast() {
                 crashlytics.record(exceptionModel: .init(exception))
