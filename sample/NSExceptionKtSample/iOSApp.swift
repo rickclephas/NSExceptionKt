@@ -1,4 +1,5 @@
 import SwiftUI
+import shared
 
 @main
 struct iOSApp: App {
@@ -6,7 +7,31 @@ struct iOSApp: App {
     
 	var body: some Scene {
 		WindowGroup {
-			ContentView()
+            NavigationView {
+                VStack {
+                    NavigationLink {
+                        ContentView()
+                    } label: {
+                        Text("SwiftUI")
+                    }
+                    NavigationLink {
+                        ComposeViewController()
+                    } label: {
+                        Text("Compose")
+                    }
+                }
+            }
 		}
 	}
+}
+
+private struct ComposeViewController: UIViewControllerRepresentable {
+    
+    func makeUIViewController(context: Context) -> some UIViewController {
+        ComposeViewKt.CrashViewController()
+    }
+    
+    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
+        
+    }
 }
