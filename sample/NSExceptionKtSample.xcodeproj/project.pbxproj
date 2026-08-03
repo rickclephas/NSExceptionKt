@@ -465,7 +465,7 @@
 			repositoryURL = "https://github.com/bugsnag/bugsnag-cocoa";
 			requirement = {
 				kind = exactVersion;
-				version = 6.32.2;
+				version = 6.36.0;
 			};
 		};
 		1D6E50CD2889912F0014D54B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
