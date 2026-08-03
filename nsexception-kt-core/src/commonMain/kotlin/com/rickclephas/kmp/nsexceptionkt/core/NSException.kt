@@ -33,6 +33,26 @@ public fun addReporter(
 }
 
 /**
+ * Creates a [NSException] representing the provided [throwable].
+ * Note: [causes][Throwable.cause] are ignored.
+ */
+@OptIn(ExperimentalObjCName::class)
+public fun createNSException(
+    @ObjCName(swiftName = "for") throwable: Throwable
+): NSException = throwable.asNSException(false)
+
+/**
+ * Returns a [NSException] representing the provided [throwable].
+ * If [appendCausedBy] is `true` then the name, message and stack trace
+ * of the [causes][Throwable.cause] will be appended, else causes are ignored.
+ */
+@OptIn(ExperimentalObjCName::class)
+public fun createNSException(
+    @ObjCName(swiftName = "for") throwable: Throwable,
+    appendCausedBy: Boolean
+): NSException = throwable.asNSException(appendCausedBy)
+
+/**
  * Returns a [NSException] representing `this` [Throwable].
  * If [appendCausedBy] is `true` then the name, message and stack trace
  * of the [causes][Throwable.cause] will be appended, else causes are ignored.
