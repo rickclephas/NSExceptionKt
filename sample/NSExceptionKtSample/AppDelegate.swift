@@ -12,14 +12,14 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil
     ) -> Bool {
         
+        // Setup Firebase Crashlytics
+        FirebaseApp.configure()
+        NSExceptionKt.addReporter(.crashlytics(causedByStrategy: .append))
+        
         // Setup Bugsnag
         let config = BugsnagConfiguration.loadConfig()
         NSExceptionKt.addReporter(.bugsnag(config))
         Bugsnag.start(with: config)
-        
-        // Setup Firebase Craslytics
-        FirebaseApp.configure()
-        NSExceptionKt.addReporter(.crashlytics(causedByStrategy: .append))
         
         return true
     }
