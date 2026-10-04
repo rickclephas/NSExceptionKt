@@ -8,11 +8,12 @@ import kotlin.experimental.ExperimentalNativeApi
  * This function stops once a reference cycles is detected.
  */
 internal val Throwable.causes: List<Throwable> get() = buildList {
-    val causes = mutableSetOf<Throwable>()
-    var cause = cause
-    while (cause != null && causes.add(cause)) {
-        add(cause)
-        cause = cause.cause
+    var nextCause = cause
+    while (nextCause != null) {
+        val currentCause = nextCause
+        if (any { it === currentCause }) break
+        add(currentCause)
+        nextCause = currentCause.cause
     }
 }
 
