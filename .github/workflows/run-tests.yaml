@@ -15,8 +15,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ macos-14 ]
-        xcode: [ 15.0 ]
+        os: [ macos-15 ]
+        xcode: [ 16.4 ]
         java: [ 17 ]
         module: [ core ]
     name: ${{ format('{0} ({1}, Xcode {2}, JDK {3})', matrix.module, matrix.os, matrix.xcode, matrix.java) }}
