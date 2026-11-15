@@ -23,7 +23,7 @@ let package = Package(
         ),
         .package(
             url: "https://github.com/bugsnag/bugsnag-cocoa.git",
-            "6.22.1"..<"7.0.0"
+            "6.22.1"..<"8.0.0"
         )
     ],
     targets: [
