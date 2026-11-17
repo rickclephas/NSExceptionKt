@@ -8,10 +8,10 @@ kotlin {
     jvmToolchain(11)
 
     listOf(
-        macosX64(), macosArm64(),
+        macosArm64(),
         iosArm64(), iosX64(), iosSimulatorArm64(),
-        watchosArm32(), watchosArm64(), watchosX64(), watchosSimulatorArm64(), watchosDeviceArm64(),
-        tvosArm64(), tvosX64(), tvosSimulatorArm64()
+        watchosArm64(), watchosSimulatorArm64(), watchosDeviceArm64(),
+        tvosArm64(), tvosSimulatorArm64()
     ).forEach {
         it.compilations.getByName("main") {
             cinterops.create("NSExceptionKtCoreObjC") {
