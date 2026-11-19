@@ -3,6 +3,7 @@ package com.rickclephas.kmp.nsexceptionkt.core
 import kotlin.experimental.ExperimentalNativeApi
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertSame
 
 @OptIn(ExperimentalNativeApi::class)
 class ThrowableCausesTests {
@@ -31,11 +32,32 @@ class ThrowableCausesTests {
         override var cause: Throwable? = null
     }
 
+    private class EqualThrowable(override val message: String?) : Throwable() {
+        override var cause: Throwable? = null
+
+        override fun equals(other: Any?): Boolean = other is EqualThrowable
+
+        override fun hashCode(): Int = 0
+    }
+
     @Test
     fun testReferenceCycle() {
         val cause = MyThrowable("Cause throwable")
         val throwable = Throwable("Test throwable", cause)
         cause.cause = throwable
         assertEquals(listOf(cause, throwable), throwable.causes)
+    }
+
+    @Test
+    fun testEqualButDistinctCauses() {
+        val cause1 = EqualThrowable("Cause 1")
+        val cause2 = EqualThrowable("Cause 2")
+        cause1.cause = cause2
+        val throwable = Throwable("Test throwable", cause1)
+
+        val causes = throwable.causes
+        assertEquals(2, causes.size)
+        assertSame(cause1, causes[0])
+        assertSame(cause2, causes[1])
     }
 }
